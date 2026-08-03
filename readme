@@ -1,0 +1,87 @@
+🚀 Özellikler
+✔ Veritabanı Gerektirmez
+Menü, kategori ve ürünler JSON / PHP yapı dosyaları üzerinden yönetilir
+Ekstra kurulum, SQL import veya bağlantı ayarı gerekmez
+Küçük/orta ölçekli işletmeler için ultra hızlı performans
+
+✔ Yönetici Paneli (Admin)
+Kategori oluşturma / düzenleme / silme
+Ürün ekleme (isim, fiyat, açıklama, görsel yükleme)
+Ürünleri sıralama
+İşletme bilgileri ayar paneli
+Tema renkleri ve logo düzenleme
+QR kod otomatik oluşturma
+Güvenli admin giriş sistemi
+
+✔ Müşteri Arayüzü
+QR kod ile hızlı erişim
+Modern, sade, mobil uyumlu arayüz
+Kategori bazlı ürün listeleme
+Ürün görselleri ve fiyatları
+Çok hızlı sayfa yükleme süreleri
+
+✔ Teknik Özellikler
+PHP 7/8 uyumlu
+Tamamen dosya tabanlı çalışma mantığı
+JSON tabanlı veri depolama
+Resim yükleme & otomatik optimize etme
+Responsiveness (Bootstrap / Tailwind opsiyonlu)
+SEO-friendly temiz link yapısı
+XSS ve form güvenlik kontrolleri
+
+🛠 Kodlama Detayları
+Dosya Tabanlı Veri Yapısı
+Menü verileri bir JSON dosyasından okunur:
+/data/categories.json
+/data/products.json
+/settings/config.json
+
+
+Bu yapı:
+
+Veritabanı gerektirmediği için hızlıdır
+Taşınabilirliği mükemmeldir
+GitHub üzerinde kolayca versiyonlanabilir
+Backend
+Admin paneli PHP ile yazılmıştır
+Dosyalara yazma/okuma işlemleri güvenli şekilde yapılır
+Tüm girişlerde Validation uygulanır
+Frontend
+HTML5 + CSS3 + JavaScript
+Mobil-first tasarım
+Kategoriler ve ürünler otomatik olarak JSON’dan yüklenir
+
+📦 Kurulum
+Dosyaları sunucuya yükleyin
+domain.com/ adresine gidin
+Yönetim paneline giriş yaparak içerikleri düzenleyin
+QR kodu çıktı alıp masalara yerleştirin
+Hiçbir veritabanı, kurulum dosyası, migration veya yapılandırma gerektirmez.
+Admin Şifresi: 111111
+
+🎯 Kullanım Alanları
+Restoran
+Kafe
+Kahvaltı salonu
+Otel / bungalov işletmeleri
+Beach club
+Pastane
+Fast food işletmeleri
+
+📄 Lisans
+Tüm halka ücretsiz sunulmuştur.
+
+
+Yeni Güncelleme Sonrası Görüntüler:
+Admin Ayarlar: https://i.hizliresim.com/5b6tjwe.png
+Admin Menü Öğeleri: https://i.hizliresim.com/ayaif2t.png
+Admin Kategoriler: https://i.hizliresim.com/hso6ni0.png
+
+Demo Front https://i.hizliresim.com/kd40hhn.png
+Anasayfa Ürün Çeşiti https://i.hizliresim.com/1dgvdre.png
+Demo Kategori https://i.hizliresim.com/dtupz4z.png
+
+
+
+![Proje Front-end Demosu](https://i.hizliresim.com/dh1ik8m.png)
+![Proje Admin-panel Demosu](https://i.hizliresim.com/i7n7c6o.png)
