@@ -1,12 +1,554 @@
 [
     {
-        "id": "m6a709200b9218",
-        "name": "Schweppes Geri Dönüşümsüz Mandalina (250 ml)",
-        "price": "125",
-        "image": "uploads\/u_6a7092b5f41b52.75419653.webp",
-        "category_id": "c6930827dc6dd2",
-        "favorite": false,
+        "id": "m6a712cf675979",
+        "name": "Americano",
+        "price": "",
+        "image": "uploads\/u_6a712e41955827.07017850.jpg",
+        "category_id": "c6930826586589",
         "desc": "",
+        "allergen": "",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": [
+            {
+                "name": "240 ml",
+                "price": "",
+                "allergen": "-",
+                "nutrition": {
+                    "kcal": "0,20",
+                    "kj": "0,84",
+                    "carb": "0",
+                    "protein": "0",
+                    "fat": "0",
+                    "satfat": "0",
+                    "sugar": "0",
+                    "salt": "0",
+                    "portion": "",
+                    "volume": ""
+                }
+            },
+            {
+                "name": "360 ml",
+                "price": "",
+                "allergen": "-",
+                "nutrition": {
+                    "kcal": "0,30",
+                    "kj": "1,26",
+                    "carb": "0",
+                    "protein": "0",
+                    "fat": "0",
+                    "satfat": "0",
+                    "sugar": "0",
+                    "salt": "0",
+                    "portion": "",
+                    "volume": ""
+                }
+            },
+            {
+                "name": "480ml",
+                "price": "",
+                "allergen": "-",
+                "nutrition": {
+                    "kcal": "0,50",
+                    "kj": "2,09",
+                    "carb": "0",
+                    "protein": "0",
+                    "fat": "0",
+                    "satfat": "0",
+                    "sugar": "0",
+                    "salt": "0",
+                    "portion": "",
+                    "volume": ""
+                }
+            }
+        ]
+    },
+    {
+        "id": "m6a712dc82ceaa",
+        "name": "Cappuccino",
+        "price": "",
+        "image": "",
+        "category_id": "c6930826586589",
+        "desc": "",
+        "allergen": "",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": [
+            {
+                "name": "360 ml",
+                "price": "",
+                "allergen": "Süt ve Süt ürünleri",
+                "nutrition": {
+                    "kcal": "92,50",
+                    "kj": "387,02",
+                    "carb": "8,20",
+                    "protein": "6,80",
+                    "fat": "3,00",
+                    "satfat": "1,80",
+                    "sugar": "8,20",
+                    "salt": "0,30",
+                    "portion": "",
+                    "volume": ""
+                }
+            },
+            {
+                "name": "480 ml",
+                "price": "",
+                "allergen": "Süt ve Süt ürünleri",
+                "nutrition": {
+                    "kcal": "131,80",
+                    "kj": "551,45",
+                    "carb": "11,70",
+                    "protein": "9,70",
+                    "fat": "4,30",
+                    "satfat": "2,60",
+                    "sugar": "11,70",
+                    "salt": "0,40",
+                    "portion": "",
+                    "volume": ""
+                }
+            }
+        ]
+    },
+    {
+        "id": "m6a71300d76f48",
+        "name": "Caramel Macchiato",
+        "price": "",
+        "image": "",
+        "category_id": "c6930826586589",
+        "desc": "",
+        "allergen": "",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": [
+            {
+                "name": "360 ml",
+                "price": "",
+                "allergen": "Süt ve Süt ürünleri",
+                "nutrition": {
+                    "kcal": "203,50",
+                    "kj": "851,44",
+                    "carb": "32,70",
+                    "protein": "8,00",
+                    "fat": "3,80",
+                    "satfat": "2,30",
+                    "sugar": "30,00",
+                    "salt": "0,32",
+                    "portion": "",
+                    "volume": ""
+                }
+            },
+            {
+                "name": "480 ml",
+                "price": "",
+                "allergen": "Süt ve Süt ürünleri",
+                "nutrition": {
+                    "kcal": "255,00",
+                    "kj": "1066,92",
+                    "carb": "41,80",
+                    "protein": "9,70",
+                    "fat": "4,50",
+                    "satfat": "2,70",
+                    "sugar": "38,90",
+                    "salt": "0,42",
+                    "portion": "",
+                    "volume": ""
+                }
+            }
+        ]
+    },
+    {
+        "id": "m6a713078bf54d",
+        "name": "Chai Tea Latte",
+        "price": "",
+        "image": "",
+        "category_id": "c6930826586589",
+        "desc": "",
+        "allergen": "",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": [
+            {
+                "name": "360 ml",
+                "price": "",
+                "allergen": "Süt ve Süt ürünleri",
+                "nutrition": {
+                    "kcal": "194,30",
+                    "kj": "812,95",
+                    "carb": "31,00",
+                    "protein": "7,80",
+                    "fat": "3,50",
+                    "satfat": "2,10",
+                    "sugar": "30,20",
+                    "salt": "0,30",
+                    "portion": "",
+                    "volume": ""
+                }
+            },
+            {
+                "name": "480 ml",
+                "price": "",
+                "allergen": "Süt ve Süt ürünleri",
+                "nutrition": {
+                    "kcal": "246,80",
+                    "kj": "1032,61",
+                    "carb": "40,30",
+                    "protein": "9,50",
+                    "fat": "4,20",
+                    "satfat": "2,50",
+                    "sugar": "80,80",
+                    "salt": "0,40",
+                    "portion": "",
+                    "volume": ""
+                }
+            }
+        ]
+    },
+    {
+        "id": "m6a713d9749f84",
+        "name": "Cookies Latte",
+        "price": "",
+        "image": "",
+        "category_id": "c6930826586589",
+        "desc": "",
+        "allergen": "",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": [
+            {
+                "name": "360 ml",
+                "price": "",
+                "allergen": "Süt ve süt ürünleri. Eser miktarda gluten ve soya",
+                "nutrition": {
+                    "kcal": "264,70",
+                    "kj": "1107,50",
+                    "carb": "28,70",
+                    "protein": "7,80",
+                    "fat": "12,50",
+                    "satfat": "8,90",
+                    "sugar": "28,55",
+                    "salt": "0,31",
+                    "portion": "",
+                    "volume": ""
+                }
+            },
+            {
+                "name": "480 ml",
+                "price": "",
+                "allergen": "Süt ve süt ürünleri. Eser miktarda gluten ve soya",
+                "nutrition": {
+                    "kcal": "343,70",
+                    "kj": "1438,04",
+                    "carb": "44,40",
+                    "protein": "9,50",
+                    "fat": "13,20",
+                    "satfat": "9,30",
+                    "sugar": "44,20",
+                    "salt": "0,41",
+                    "portion": "",
+                    "volume": ""
+                }
+            }
+        ]
+    },
+    {
+        "id": "m6a713de0e44dd",
+        "name": "Cortado",
+        "price": "",
+        "image": "",
+        "category_id": "c6930826586589",
+        "desc": "",
+        "allergen": "",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": [
+            {
+                "name": "240 ml",
+                "price": "",
+                "allergen": "Süt ve Süt ürünleri",
+                "nutrition": {
+                    "kcal": "48,30",
+                    "kj": "202,09",
+                    "carb": "4,30",
+                    "protein": "3,50",
+                    "fat": "1,60",
+                    "satfat": "0,90",
+                    "sugar": "4,30",
+                    "salt": "0,10",
+                    "portion": "",
+                    "volume": ""
+                }
+            }
+        ]
+    },
+    {
+        "id": "m6a713fb9e2978",
+        "name": "Çay",
+        "price": "",
+        "image": "",
+        "category_id": "c6930826586589",
+        "desc": "",
+        "allergen": "",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": [
+            {
+                "name": "240 ml",
+                "price": "",
+                "allergen": "-",
+                "nutrition": {
+                    "kcal": "0,80",
+                    "kj": "3,35",
+                    "carb": "0",
+                    "protein": "0",
+                    "fat": "0",
+                    "satfat": "0",
+                    "sugar": "0",
+                    "salt": "0",
+                    "portion": "",
+                    "volume": ""
+                }
+            },
+            {
+                "name": "360 ml",
+                "price": "",
+                "allergen": "-",
+                "nutrition": {
+                    "kcal": "1,20",
+                    "kj": "5,02",
+                    "carb": "0",
+                    "protein": "0",
+                    "fat": "0",
+                    "satfat": "0",
+                    "sugar": "0",
+                    "salt": "0",
+                    "portion": "",
+                    "volume": ""
+                }
+            },
+            {
+                "name": "480 ml",
+                "price": "",
+                "allergen": "-",
+                "nutrition": {
+                    "kcal": "1,60",
+                    "kj": "6,69",
+                    "carb": "0",
+                    "protein": "0",
+                    "fat": "0",
+                    "satfat": "0",
+                    "sugar": "0",
+                    "salt": "0",
+                    "portion": "",
+                    "volume": ""
+                }
+            }
+        ]
+    },
+    {
+        "id": "m6a7140067d423",
+        "name": "Espresso",
+        "price": "",
+        "image": "",
+        "category_id": "c6930826586589",
+        "desc": "",
+        "allergen": "",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": [
+            {
+                "name": "Solo",
+                "price": "",
+                "allergen": "-",
+                "nutrition": {
+                    "kcal": "0,20",
+                    "kj": "0,84",
+                    "carb": "0",
+                    "protein": "0",
+                    "fat": "0",
+                    "satfat": "0",
+                    "sugar": "0",
+                    "salt": "0",
+                    "portion": "",
+                    "volume": ""
+                }
+            },
+            {
+                "name": "Doppie",
+                "price": "",
+                "allergen": "-",
+                "nutrition": {
+                    "kcal": "0,30",
+                    "kj": "1,26",
+                    "carb": "0",
+                    "protein": "0",
+                    "fat": "0",
+                    "satfat": "0",
+                    "sugar": "0",
+                    "salt": "0",
+                    "portion": "",
+                    "volume": ""
+                }
+            }
+        ]
+    },
+    {
+        "id": "m6a71409701396",
+        "name": "Espresso Con Panna",
+        "price": "",
+        "image": "",
+        "category_id": "c6930826586589",
+        "desc": "",
+        "allergen": "",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": [
+            {
+                "name": "Solo",
+                "price": "",
+                "allergen": "Süt ve süt ürünleri. Eser miktarda soya",
+                "nutrition": {
+                    "kcal": "41,20",
+                    "kj": "172,38",
+                    "carb": "2,30",
+                    "protein": "0",
+                    "fat": "3,60",
+                    "satfat": "2,70",
+                    "sugar": "2,20",
+                    "salt": "0,01",
+                    "portion": "",
+                    "volume": ""
+                }
+            },
+            {
+                "name": "Doppie",
+                "price": "",
+                "allergen": "Süt ve süt ürünleri. Eser miktarda soya",
+                "nutrition": {
+                    "kcal": "41,30",
+                    "kj": "172,80",
+                    "carb": "2,30",
+                    "protein": "0",
+                    "fat": "3,60",
+                    "satfat": "2,70",
+                    "sugar": "2,20",
+                    "salt": "0,01",
+                    "portion": "",
+                    "volume": ""
+                }
+            }
+        ]
+    },
+    {
+        "id": "m6a71453221028",
+        "name": "Schweppes Mandalina",
+        "price": "",
+        "image": "",
+        "category_id": "c6a711f9f8c3e4",
+        "desc": "",
+        "allergen": "",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
         "variants": []
     }
 ]

@@ -1,6 +1,32 @@
-:root{--bg:#f7f7f7;--text:#111;--muted:#666;--card:#fff;--accent:#111}
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root{
+    --bg:#f7f7f7;
+    --text:#111;
+    --muted:#666;
+    --card:#fff;
+    --accent:#111;
+    --price:#c05a1d;
+    --price-bg:#fff1e4;
+    --allergen-text:#8a4b00;
+    --allergen-bg:#fff6e8;
+    --allergen-border:#ffe3b0;
+
+    /* Menü kartları için kahve temalı palet */
+    --coffee-950:#241408;
+    --coffee-900:#331c0d;
+    --coffee-700:#5c3a20;
+    --cream:#fbf5e9;
+    --cream-deep:#f3e7d2;
+    --paper:#fffdf9;
+    --copper:#b5651d;
+    --copper-deep:#8a4a15;
+    --gold:#d69a4c;
+    --ink:#2c1c10;
+    --ink-soft:#6d5a49;
+}
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:'Manrope',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
 .site-header{position:sticky;top:0;z-index:10;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:10px;border-bottom:1px solid #eee}
 .site-header.overlay{background:rgba(255,255,255,.85)}
 .header-left,.header-right{width:64px;display:flex;align-items:center;justify-content:center}
@@ -8,55 +34,188 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:
 .logo{height:36px}
 .logo-text{font-weight:700;font-size:18px}
 .icon-btn{background:none;border:none;padding:8px;cursor:pointer}
-.search-bar{display:none;position:sticky;top:54px;background:#fff;padding:8px;border-bottom:1px solid #eee}
-.search-bar.active{display:block}
-.search-bar input{width:100%;padding:10px;border:1px solid #ddd;border-radius:8px}
-.search-results{display:none;position:relative;background:#fff;border:1px solid #eee;border-radius:8px;margin-top:8px;box-shadow:0 6px 20px rgba(0,0,0,.08)}
-.sr-group{font-weight:600;padding:8px 10px;border-bottom:1px solid #f0f0f0}
-.sr-item{display:block;padding:10px;text-decoration:none;color:#111;border-bottom:1px solid #f6f6f6}
-.sr-item:hover{background:#f9f9f9}
-.sr-empty{padding:10px;color:#666}
-.container{padding:12px}
-.favorites h2,.categories h2{font-size:16px;margin:12px 0}
-.fav-list{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px}
-.fav-card{min-width:220px;background:var(--card);border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.06);text-decoration:none;color:inherit;display:flex}
-.fav-img{width:80px;height:80px;border-radius:12px 0 0 12px;background-size:cover;background-position:center;background-color:#ddd}
-.fav-info{padding:8px;display:flex;flex-direction:column;justify-content:center}
-.fav-name{font-weight:600;display:flex;align-items:center;gap:6px}
-.fav-var-btn{margin-left:4px;display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border:1px solid #eee;background:#fff;border-radius:6px;cursor:pointer}
-.var-list{list-style:none;padding:0;margin:8px 0 0 0;border:1px solid #eee;border-radius:10px;overflow:hidden;background:#fff}
-.var-list .var-head{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;padding:10px 12px;font-weight:600;background:#fafafa;border-bottom:1px solid #eee}
-.var-list .var-item{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px dashed #eee}
-.var-list .var-item:last-child{border-bottom:0}
-.var-list .var-n{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.var-list .var-p{font-weight:700;justify-self:end;text-align:right}
-.var-list .var-empty{padding:10px 12px;color:var(--muted)}
-.fav-price{color:var(--muted);font-size:13px}
+.container{padding:14px}
+
+/* ================= Ana sayfa: kategori kartları ================= */
+
+.categories h2{
+    font-family:'SemiBold 600 Italic',serif;
+    font-weight:700;
+    font-size:22px;
+    letter-spacing:.2px;
+    color:var(--ink);
+    margin:14px 0 16px;
+    display:flex;align-items:center;gap:10px;
+}
+.categories h2::before{content:'';width:20px;height:3px;border-radius:999px;background:var(--copper);display:inline-block}
 .cat-header{display:flex;align-items:center;justify-content:space-between}
-.cat-grid{display:grid;gap:10px;grid-template-columns:1fr 1fr}
+.cat-grid{display:grid;gap:12px;grid-template-columns:1fr 1fr}
 .cat-card.full{grid-column:1 / -1}
-.cat-card.vertical{height:220px}
-.cat-card{position:relative;height:140px;border-radius:12px;background-size:cover;background-position:center;background-color:#eaeaea;text-decoration:none;color:#fff;display:flex;align-items:flex-end}
-.cat-title{width:100%;padding:10px;background:linear-gradient(180deg,rgba(0,0,0,0) 0%, rgba(0,0,0,.6) 100%);border-radius:0 0 12px 12px}
-.site-footer{display:flex;align-items:center;justify-content:space-between;padding:16px;background:#fff;border-top:1px solid #eee;margin-top:20px}
+.cat-card.vertical{height:230px}
+.cat-card{
+    position:relative;height:145px;border-radius:16px;
+    background-size:cover;background-position:center;
+    background-color:var(--coffee-900);
+    background-image:linear-gradient(135deg,var(--coffee-700),var(--coffee-950));
+    text-decoration:none;color:#fff;
+    display:flex;align-items:flex-end;
+    overflow:hidden;
+    border:1px solid var(--cream-deep);
+    box-shadow:0 4px 14px rgba(44,28,16,.12);
+    transition:transform .2s ease,box-shadow .2s ease;
+}
+.cat-card:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(44,28,16,.22)}
+.cat-card::before{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(200deg,rgba(36,20,8,0) 40%,rgba(36,20,8,.72) 100%);
+    transition:opacity .2s ease;
+}
+.cat-card:hover::before{opacity:.85}
+.cat-title{
+    position:relative;width:100%;padding:14px 16px;
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:15.5px;
+    letter-spacing:.3px;
+    text-shadow:0 1px 6px rgba(0,0,0,.35);
+}
+.cat-title::before{content:'';display:block;width:16px;height:2px;background:var(--gold);margin-bottom:7px;border-radius:999px}
+.site-footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:16px;background:#fff;border-top:1px solid #eee;margin-top:20px}
 .site-footer a{color:#0066cc;text-decoration:none}
 .footer-icons{display:flex;gap:10px;margin-left:auto}
+.footer-copyright{width:100%;text-align:center;font-size:12px;color:var(--muted);margin-top:10px}
 .social-link{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:999px;background:transparent;color:#111}
-.cat-header-bg{position:relative;height:160px;background-size:cover;background-position:center;background-color:#ccc}
-.cat-title-bar{display:flex;align-items:center;justify-content:space-between;padding:10px}
-.back-btn{padding:8px 10px;border:1px solid #ddd;background:#fff;border-radius:8px;text-decoration:none;color:inherit}
-.menu-list{display:grid;gap:10px}
-.menu-card{display:flex;background:#fff;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
-.menu-img{width:100px;height:100px;border-radius:12px 0 0 12px;background-size:cover;background-position:center;background-color:#ddd}
-.menu-info{padding:10px;display:flex;flex-direction:column;justify-content:center;flex:1}
-.menu-name{font-weight:600;display:flex;align-items:center;gap:6px}
-.menu-meta{color:var(--muted);font-size:13px;display:flex;gap:8px}
-.menu-price-right{margin-left:auto;padding:0 12px;font-weight:700;display:flex;align-items:center}
-.modal{position:fixed;inset:0;display:none;z-index:50}
-.modal.active{display:block}
-.modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.4)}
-.modal-content{position:relative;max-width:420px;margin:80px auto;background:#fff;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.2)}
-.modal-close{position:absolute;top:8px;right:8px;background:#eee;border:none;border-radius:999px;width:28px;height:28px;cursor:pointer}
-.modal-body{padding:16px;display:grid;gap:12px;justify-items:center}
-.wifi-title{font-weight:600}
-.wifi-pass{font-size:18px;letter-spacing:1px}
+
+/* ================= Kategori sayfası: ürün listesi ================= */
+
+.cat-header-bg{position:relative;height:200px;background-size:cover;background-position:center;background-color:var(--coffee-900)}
+.cat-header-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(36,20,8,0) 35%,rgba(36,20,8,.75) 100%)}
+
+.cat-title-bar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 16px 14px;
+    background:var(--cream);
+    border-bottom:1px solid var(--cream-deep);
+}
+.cat-title-bar h1{
+    margin:0;
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:26px;
+    letter-spacing:.2px;
+    color:var(--ink);
+}
+.back-btn{
+    padding:9px 16px;border:1px solid var(--copper);background:var(--paper);
+    border-radius:999px;text-decoration:none;color:var(--copper-deep);
+    font-size:12.5px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;
+    box-shadow:0 1px 4px rgba(0,0,0,.05);transition:background .15s ease,color .15s ease,transform .15s ease;
+    white-space:nowrap;
+}
+.back-btn:hover{background:var(--copper);color:#fff;transform:translateY(-1px)}
+
+.container{background:var(--cream)}
+.menu-list{display:grid;gap:16px;padding-bottom:8px}
+
+@keyframes cardIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.menu-card{
+    position:relative;
+    display:flex;
+    background:var(--paper);
+    border-radius:18px;
+    box-shadow:0 4px 18px rgba(44,28,16,.09);
+    overflow:hidden;
+    border:1px solid var(--cream-deep);
+    transition:transform .2s ease,box-shadow .2s ease;
+    animation:cardIn .4s ease both;
+}
+.menu-card:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(44,28,16,.16)}
+
+.menu-img{
+    position:relative;
+    width:118px;min-height:118px;align-self:stretch;
+    background-size:cover;background-position:center;background-color:var(--cream-deep);
+    background-image:linear-gradient(135deg,#eee0c6,#e3d2ad);
+    overflow:hidden;
+    transition:transform .3s ease;
+}
+.menu-card:hover .menu-img{transform:scale(1.05)}
+.menu-img::after{
+    content:'';position:absolute;inset:0;
+    box-shadow:inset -8px 0 14px -12px rgba(0,0,0,.35);
+}
+
+.menu-info{
+    position:relative;
+    padding:13px 16px;
+    display:flex;flex-direction:column;justify-content:center;
+    flex:1;min-width:0;
+}
+.menu-name{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:17.5px;
+    line-height:1.25;
+    letter-spacing:.1px;
+    color:var(--ink);
+    display:flex;align-items:center;gap:6px;
+}
+.menu-meta{color:var(--ink-soft);font-size:12.5px;font-style:italic;margin-top:3px}
+
+.menu-nutrition{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.nutrition-item{
+    display:inline-flex;align-items:center;gap:4px;
+    background:var(--cream-deep);color:var(--coffee-700);
+    font-size:10.5px;font-weight:700;letter-spacing:.2px;text-transform:uppercase;
+    white-space:nowrap;padding:4px 9px;border-radius:999px;
+}
+.nutrition-item::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--copper);flex:0 0 auto}
+
+.menu-allergen{
+    display:inline-flex;align-items:center;gap:6px;
+    font-weight:700;font-size:12px;
+    color:var(--allergen-text);background:var(--allergen-bg);
+    border:1px dashed var(--allergen-border);
+    padding:5px 10px;border-radius:8px;margin-top:9px;width:fit-content;
+}
+.allergen-icon{flex:0 0 auto;display:inline-flex;color:var(--allergen-text)}
+
+/* Fiyat: kahve dükkanı damgası gibi tek fiyatlar için */
+.menu-price-right{margin-left:auto;padding:14px 16px 0 6px;display:flex;align-items:flex-start}
+.price-badge{
+    position:relative;
+    display:inline-flex;align-items:center;justify-content:center;
+    min-width:58px;height:58px;padding:0 10px;
+    border-radius:50%;
+    background:var(--coffee-900);
+    color:var(--gold);
+    font-family:'Fraunces',serif;
+    font-weight:700;font-size:13px;
+    text-align:center;line-height:1.1;
+    transform:rotate(-6deg);
+    box-shadow:0 0 0 3px var(--paper),0 0 0 4px var(--copper),0 6px 14px rgba(44,28,16,.25);
+}
+
+/* Boy / çeşit listesi: fiş satırları gibi */
+.size-list{display:flex;flex-direction:column;gap:0;margin-top:9px}
+.size-block{
+    position:relative;
+    background:var(--paper);
+    border-top:1px dashed var(--cream-deep);
+    padding:9px 2px;
+}
+.size-block:first-child{border-top:none;padding-top:0}
+.size-block-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.size-block-name{
+    font-weight:700;font-size:13.5px;color:var(--ink);
+    display:flex;align-items:center;gap:8px;
+}
+.size-block-name::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--copper);flex:0 0 auto}
+.size-block-price{
+    font-family:'Fraunces',serif;
+    font-weight:700;font-size:14px;color:var(--copper-deep);
+    background:var(--price-bg);padding:3px 11px;border-radius:999px;white-space:nowrap;
+}
+.size-block .menu-nutrition{margin-top:7px;margin-left:14px}
+.size-block .menu-allergen{margin-top:7px;margin-left:14px}

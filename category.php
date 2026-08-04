@@ -53,9 +53,6 @@ $bg = $category['image'] ?? '';
     <div class="cat-header-bg" style="<?php echo $bg? 'background-image:url('.h($bg).')':''; ?>"></div>
     <header class="site-header overlay" style="<?php echo $headerBg? 'background:'.h($headerBg):''; ?>">
         <div class="header-left">
-            <button id="wifiToggle" class="icon-btn" aria-label="WiFi">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 20c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6.6-6.6c-3.6-3.6-9.6-3.6-13.2 0-.4.4-1 .4-1.4 0s-.4-1 0-1.4c4.4-4.4 11.6-4.4 16 0 .4.4.4 1 0 1.4s-1 .4-1.4 0zm3.5-3.5c-5.6-5.6-14.7-5.6-20.3 0-.4.4-1 .4-1.4 0s-.4-1 0-1.4c6.4-6.4 16.7-6.4 23.1 0 .4.4.4 1 0 1.4s-1 .4-1.4 0z"/></svg>
-            </button>
         </div>
         <div class="header-center">
             <?php if ($logo): ?>
@@ -72,66 +69,95 @@ $bg = $category['image'] ?? '';
         <a class="back-btn" href="index.php">Menüye dön</a>
     </div>
 
-    <div id="wifiModal" class="modal">
-        <div class="modal-backdrop"></div>
-        <div class="modal-content">
-            <button id="wifiClose" class="modal-close" aria-label="Kapat">×</button>
-            <div class="modal-body">
-                <div class="modal-logo">
-                    <?php if ($logo): ?>
-                        <img class="logo" src="<?php echo h($logo); ?>" alt="<?php echo h((string)$config['site_title']); ?>">
-                    <?php else: ?>
-                        <div class="logo-text"><?php echo h((string)$config['site_title']); ?></div>
-                    <?php endif; ?>
-                </div>
-                <div class="wifi-info">
-                    <div class="wifi-title">WiFi Şifresi</div>
-                    <div class="wifi-pass"><?php echo h((string)($config['wifi_password'] ?? '')); ?></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="variantsModal" class="modal">
-        <div class="modal-backdrop"></div>
-        <div class="modal-content">
-            <button id="varClose" class="modal-close" aria-label="Kapat">×</button>
-            <div class="modal-body">
-                <div class="modal-logo">
-                    <?php if ($logo): ?>
-                        <img class="logo" src="<?php echo h($logo); ?>" alt="<?php echo h((string)$config['site_title']); ?>">
-                    <?php else: ?>
-                        <div class="logo-text"><?php echo h((string)$config['site_title']); ?></div>
-                    <?php endif; ?>
-                </div>
-                <div class="wifi-info">
-                    <div class="wifi-title" id="varTitle">Çeşitler</div>
-                    <ul class="var-list" id="varList"></ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <main class="container">
         <section class="menu-list">
+            <?php
+            $nutritionLabels = [
+                'kcal'    => 'Enerji (kcal)',
+                'kj'      => 'Enerji (kJ)',
+                'carb'    => 'Karbonhidrat (g)',
+                'protein' => 'Protein (g)',
+                'fat'     => 'Yağ (g)',
+                'satfat'  => 'Doymuş Yağ (g)',
+                'sugar'   => 'Şeker (g)',
+                'salt'    => 'Tuz (g)',
+                'portion' => 'Porsiyon Gramajı (g)',
+                'volume'  => 'Ürün Miktarı (mL)',
+            ];
+            ?>
             <?php foreach ($menu as $item): ?>
                 <?php if ((string)($item['category_id'] ?? '') !== $id) continue; ?>
-                <div class="menu-card" id="item-<?php echo h((string)($item['id'] ?? '')); ?>">
+                <?php
+                $itemId = (string)($item['id'] ?? '');
+                $vars = isset($item['variants']) && is_array($item['variants']) ? $item['variants'] : [];
+                $hasVariants = count($vars) > 0;
+
+                // Boy/çeşit listesi: temel ürün + her çeşidin kendi fiyat/besin/alerjen bilgisiyle
+                $sizes = [];
+                $sizes[] = [
+                    'label'     => '',
+                    'price'     => fmt_price($item['price'] ?? ''),
+                    'allergen'  => (string)($item['allergen'] ?? ''),
+                    'nutrition' => isset($item['nutrition']) && is_array($item['nutrition']) ? $item['nutrition'] : [],
+                ];
+                foreach ($vars as $v) {
+                    $sizes[] = [
+                        'label'     => (string)($v['name'] ?? ''),
+                        'price'     => fmt_price($v['price'] ?? ''),
+                        'allergen'  => (string)($v['allergen'] ?? ''),
+                        'nutrition' => isset($v['nutrition']) && is_array($v['nutrition']) ? $v['nutrition'] : [],
+                    ];
+                }
+                $baseNut = array_filter($sizes[0]['nutrition'], function($v){ return trim((string)$v) !== ''; });
+                ?>
+                <div class="menu-card" id="item-<?php echo h($itemId); ?>">
                     <div class="menu-img" style="<?php echo !empty($item['image'])? 'background-image:url('.h($item['image']).')':''; ?>"></div>
                     <div class="menu-info">
                         <div class="menu-name">
                             <?php echo h((string)($item['name'] ?? '')); ?>
-                            <?php $vars = isset($item['variants']) && is_array($item['variants']) ? $item['variants'] : []; if (count($vars) > 0): $vdata = array_map(function($v){ return ['name'=>(string)($v['name']??''),'price'=>fmt_price($v['price']??'')]; }, $vars); $vjson = json_encode($vdata, JSON_UNESCAPED_UNICODE); $venc = rawurlencode((string)$vjson); ?>
-                            <button class="fav-var-btn" data-open="variants" type="button" aria-label="Çeşitler" data-name="<?php echo h((string)($item['name'] ?? '')); ?>" data-variants="<?php echo h($venc); ?>" onclick="openVariants('<?php echo h((string)($item['name'] ?? '')); ?>','<?php echo h($venc); ?>')">
-                                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2l3 7h7l-6 4 3 7-6-4-6 4 3-7-6-4h7z"/></svg>
-                            </button>
-                            <?php endif; ?>
                         </div>
                         <?php if (!empty($item['desc'])): ?>
                         <div class="menu-meta"><?php echo h((string)$item['desc']); ?></div>
                         <?php endif; ?>
+
+                        <?php if ($hasVariants): ?>
+                        <div class="size-list">
+                            <?php foreach ($sizes as $sz): ?>
+                                <?php $szNut = array_filter($sz['nutrition'], function($v){ return trim((string)$v) !== ''; }); ?>
+                                <div class="size-block">
+                                    <div class="size-block-head">
+                                        <span class="size-block-name"><?php echo h((string)$sz['label']); ?></span>
+                                        <span class="size-block-price"><?php echo h((string)$sz['price']); ?></span>
+                                    </div>
+                                    <?php if (!empty($szNut)): ?>
+                                    <div class="menu-nutrition">
+                                        <?php foreach ($nutritionLabels as $nkey => $nlabel): ?>
+                                            <?php if (isset($szNut[$nkey])): ?>
+                                                <span class="nutrition-item"><?php echo h($nlabel); ?>: <?php echo h((string)$szNut[$nkey]); ?></span>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </div>
+                                    <?php endif; ?>
+                                    <?php if (!empty($sz['allergen'])): ?>
+                                    <div class="menu-allergen"><span class="allergen-icon"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 2 1 21h22L12 2zm0 5.5 7.1 12.3H4.9L12 7.5zM11 10v5h2v-5h-2zm0 6.5v2h2v-2h-2z"/></svg></span>Alerjen: <?php echo h((string)$sz['allergen']); ?></div>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                        <?php else: ?>
+                        <div class="menu-nutrition"<?php echo empty($baseNut) ? ' style="display:none;"' : ''; ?>>
+                            <?php foreach ($nutritionLabels as $nkey => $nlabel): ?>
+                                <?php if (isset($baseNut[$nkey])): ?>
+                                    <span class="nutrition-item"><?php echo h($nlabel); ?>: <?php echo h((string)$baseNut[$nkey]); ?></span>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </div>
+                        <div class="menu-allergen"<?php echo empty($item['allergen']) ? ' style="display:none;"' : ''; ?>><span class="allergen-icon"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 2 1 21h22L12 2zm0 5.5 7.1 12.3H4.9L12 7.5zM11 10v5h2v-5h-2zm0 6.5v2h2v-2h-2z"/></svg></span>Alerjen: <?php echo h((string)($item['allergen'] ?? '')); ?></div>
+                        <?php endif; ?>
                     </div>
-                    <div class="menu-price-right"><?php echo h(fmt_price($item['price'] ?? '')); ?></div>
+                    <?php if (!$hasVariants): ?>
+                    <div class="menu-price-right"><span class="price-badge"><?php echo h(fmt_price($item['price'] ?? '')); ?></span></div>
+                    <?php endif; ?>
                 </div>
             <?php endforeach; ?>
         </section>
@@ -158,39 +184,9 @@ $bg = $category['image'] ?? '';
             </a>
             <?php endif; ?>
         </div>
+        <div class="footer-copyright">Telif hakkı ©2026 Colombia Plus Kurumsal.</div>
     </footer>
 
     <script src="assets/js/app.js"></script>
-    <script>
-    if (!window.openVariants) {
-        window.openVariants = function(name, enc){
-            var vm = document.getElementById('variantsModal');
-            var vt = document.getElementById('varTitle');
-            var vl = document.getElementById('varList');
-            var list = [];
-            try { list = JSON.parse(decodeURIComponent(enc || '[]')); } catch(e) {}
-            if (vt) vt.textContent = name || 'Çeşitler';
-            if (vl) {
-                if (Array.isArray(list) && list.length) {
-                    var esc = function(s){ return String(s||'').replace(/[&<>"']/g,function(c){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]; }); };
-                    var head = '<li class="var-head"><span class="var-n">Çeşit</span><span class="var-p">Fiyat</span></li>';
-                    var rows = list.map(function(i){ return '<li class="var-item"><span class="var-n">'+esc(i.name)+'</span><span class="var-p">'+esc(i.price)+'</span></li>'; }).join('');
-                    vl.innerHTML = head + rows;
-                } else {
-                    vl.innerHTML = '<li class="var-empty">Çeşit bulunamadı</li>';
-                }
-            }
-            if (vm) vm.classList.add('active');
-        };
-        (function(){
-            var vm = document.getElementById('variantsModal');
-            var vc = document.getElementById('varClose');
-            if (vc && vm) vc.addEventListener('click', function(){ vm.classList.remove('active'); });
-            var bd = vm ? vm.querySelector('.modal-backdrop') : null;
-            if (bd) bd.addEventListener('click', function(){ vm.classList.remove('active'); });
-            document.addEventListener('keydown', function(e){ if (e.key === 'Escape') { vm && vm.classList.remove('active'); } });
-        })();
-    }
-    </script>
 </body>
 </html>

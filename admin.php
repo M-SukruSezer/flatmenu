@@ -40,6 +40,38 @@ function str_limit(string $s, int $l): string {
     return substr($s, 0, $l);
 }
 
+// Besin değerleri (nutrition facts) alan tanımları: key => Etiket
+const NUTRITION_FIELDS = [
+    'kcal'    => 'Enerji (kcal)',
+    'kj'      => 'Enerji (kJ)',
+    'carb'    => 'Karbonhidrat (g)',
+    'protein' => 'Protein (g)',
+    'fat'     => 'Yağ (g)',
+    'satfat'  => 'Doymuş Yağ (g)',
+    'sugar'   => 'Şeker (g)',
+    'salt'    => 'Tuz (g)',
+    'portion' => 'Porsiyon Gramajı (g)',
+    'volume'  => 'Ürün Miktarı (mL)',
+];
+
+// Bir ham diziden (POST'tan gelen) besin değerlerini temizleyip standart forma sokar
+function sanitize_nutrition(array $raw, array $existing = []): array {
+    $out = [];
+    foreach (array_keys(NUTRITION_FIELDS) as $key) {
+        $val = trim((string)($raw[$key] ?? ($existing[$key] ?? '')));
+        // sadece rakam, virgül/nokta kabul et
+        $val = preg_replace('/[^0-9.,]/', '', $val) ?? '';
+        $out[$key] = $val;
+    }
+    return $out;
+}
+
+// POST'tan (ürünün kendi/temel) besin değerlerini oku, $existing verilirse boş bırakılan alanlarda eski değeri korur
+function nutrition_from_post(array $existing = []): array {
+    $posted = isset($_POST['item_nutrition']) && is_array($_POST['item_nutrition']) ? $_POST['item_nutrition'] : [];
+    return sanitize_nutrition($posted, $existing);
+}
+
 $configFile = $dataDir . DIRECTORY_SEPARATOR . 'config.json';
 $catsFile = $dataDir . DIRECTORY_SEPARATOR . 'categories.json';
 $menuFile = $dataDir . DIRECTORY_SEPARATOR . 'menu.json';
@@ -122,7 +154,6 @@ $tab = isset($_GET['tab']) ? (string)$_GET['tab'] : 'dashboard';
 $tab = in_array($tab, ['dashboard','kategoriler','menuler','ayarlar'], true) ? $tab : 'dashboard';
 $catCount = count($categories);
 $itemCount = count($menu);
-$favCount = 0; foreach ($menu as $it) { if (!empty($it['favorite'])) $favCount++; }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
@@ -135,7 +166,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $config['social']['facebook'] = trim((string)($_POST['facebook'] ?? ''));
         $config['social']['instagram'] = trim((string)($_POST['instagram'] ?? ''));
         $config['social']['twitter'] = trim((string)($_POST['twitter'] ?? ''));
-        $config['wifi_password'] = trim((string)($_POST['wifi_password'] ?? (string)($config['wifi_password'] ?? '')));
         $hb = (string)($_POST['header_bg'] ?? (string)($config['header_bg'] ?? ''));
         $fb = (string)($_POST['footer_bg'] ?? (string)($config['footer_bg'] ?? ''));
         if ($hb !== '') $config['header_bg'] = $hb;
@@ -255,19 +285,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $price = trim((string)($_POST['item_price'] ?? ''));
         $cid = (string)($_POST['item_category'] ?? '');
         $desc = str_limit(trim((string)($_POST['item_desc'] ?? '')), 80);
+        $allergen = str_limit(trim((string)($_POST['item_allergen'] ?? '')), 150);
         $vn = isset($_POST['item_var_name']) && is_array($_POST['item_var_name']) ? $_POST['item_var_name'] : [];
         $vp = isset($_POST['item_var_price']) && is_array($_POST['item_var_price']) ? $_POST['item_var_price'] : [];
+        $va = isset($_POST['item_var_allergen']) && is_array($_POST['item_var_allergen']) ? $_POST['item_var_allergen'] : [];
+        $vnutAll = isset($_POST['item_var_nutrition']) && is_array($_POST['item_var_nutrition']) ? $_POST['item_var_nutrition'] : [];
         $variants = [];
         $maxc = max(count($vn), count($vp));
         for ($i=0; $i<$maxc; $i++) {
             $n = trim((string)($vn[$i] ?? ''));
             $p = trim((string)($vp[$i] ?? ''));
-            if ($n !== '') { $variants[] = ['name' => $n, 'price' => $p]; }
+            if ($n !== '') {
+                $vAllergen = str_limit(trim((string)($va[$i] ?? '')), 150);
+                $vNutRaw = isset($vnutAll[$i]) && is_array($vnutAll[$i]) ? $vnutAll[$i] : [];
+                $variants[] = ['name' => $n, 'price' => $p, 'allergen' => $vAllergen, 'nutrition' => sanitize_nutrition($vNutRaw)];
+            }
         }
         $img = upload_file('item_image', $uploadsDir);
+        $nutrition = nutrition_from_post();
         if ($name !== '' && $cid !== '') {
             $id = uniqid('m');
-            $menu[] = ['id' => $id, 'name' => $name, 'price' => $price, 'image' => $img ?? '', 'category_id' => $cid, 'favorite' => !empty($_POST['item_favorite']), 'desc' => $desc, 'variants' => $variants];
+            $menu[] = ['id' => $id, 'name' => $name, 'price' => $price, 'image' => $img ?? '', 'category_id' => $cid, 'desc' => $desc, 'allergen' => $allergen, 'nutrition' => $nutrition, 'variants' => $variants];
             save_json($menuFile, $menu);
         }
         $ret = (string)($_POST['ret'] ?? '');
@@ -282,23 +320,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $name = trim((string)($_POST['item_name'] ?? (string)$it['name']));
                 $price = trim((string)($_POST['item_price'] ?? (string)$it['price']));
                 $cid = (string)($_POST['item_category'] ?? (string)$it['category_id']);
-                $fav = !empty($_POST['item_favorite']);
                 $desc = str_limit(trim((string)($_POST['item_desc'] ?? (string)($it['desc'] ?? ''))), 80);
+                $allergen = str_limit(trim((string)($_POST['item_allergen'] ?? (string)($it['allergen'] ?? ''))), 150);
                 $vn = isset($_POST['edit_var_name']) && is_array($_POST['edit_var_name']) ? $_POST['edit_var_name'] : [];
                 $vp = isset($_POST['edit_var_price']) && is_array($_POST['edit_var_price']) ? $_POST['edit_var_price'] : [];
+                $va = isset($_POST['edit_var_allergen']) && is_array($_POST['edit_var_allergen']) ? $_POST['edit_var_allergen'] : [];
+                $vnutAll = isset($_POST['edit_var_nutrition']) && is_array($_POST['edit_var_nutrition']) ? $_POST['edit_var_nutrition'] : [];
                 $variants = [];
                 $maxc = max(count($vn), count($vp));
                 for ($i=0; $i<$maxc; $i++) {
                     $n = trim((string)($vn[$i] ?? ''));
                     $p = trim((string)($vp[$i] ?? ''));
-                    if ($n !== '') { $variants[] = ['name' => $n, 'price' => $p]; }
+                    if ($n !== '') {
+                        $vAllergen = str_limit(trim((string)($va[$i] ?? '')), 150);
+                        $vNutRaw = isset($vnutAll[$i]) && is_array($vnutAll[$i]) ? $vnutAll[$i] : [];
+                        $variants[] = ['name' => $n, 'price' => $p, 'allergen' => $vAllergen, 'nutrition' => sanitize_nutrition($vNutRaw)];
+                    }
                 }
                 $img = upload_file('edit_item_image', $uploadsDir);
+                $nutrition = nutrition_from_post(isset($it['nutrition']) && is_array($it['nutrition']) ? $it['nutrition'] : []);
                 $it['name'] = $name;
                 $it['price'] = $price;
                 $it['category_id'] = $cid;
-                $it['favorite'] = $fav;
                 $it['desc'] = $desc;
+                $it['allergen'] = $allergen;
+                $it['nutrition'] = $nutrition;
                 $it['variants'] = $variants;
                 if ($img) { $it['image'] = $img; }
                 break;
@@ -353,6 +399,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .thumb { width: 56px; height: 56px; border-radius: 8px; object-fit: cover; background: #eee; display: inline-block; }
         .highlight-row td { background: #fff3cd !important; }
         .highlight-box { background: #fffbe6 !important; box-shadow: 0 0 0 2px #ffe08a inset; }
+        .field-warning { color:#c00; font-size:12px; margin-top:6px; }
+        select.field-error { border-color:#c00; box-shadow:0 0 0 1px #c00; }
+
+        .item-accordion { display:grid; gap:8px; margin-top:10px; }
+        .item-row { border:1px solid #eee; border-radius:10px; overflow:hidden; }
+        .item-row[open] { box-shadow:0 2px 10px rgba(0,0,0,.06); }
+        .item-summary { list-style:none; display:flex; align-items:center; gap:10px; padding:10px; cursor:pointer; background:#fff; }
+        .item-summary::-webkit-details-marker { display:none; }
+        .item-summary-name { font-weight:600; flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+        .item-summary-price { font-weight:600; white-space:nowrap; }
+        .item-summary-cat { color:#666; font-size:13px; white-space:nowrap; }
+        .item-summary-arrow { transition:transform .15s ease; color:#666; }
+        .item-row[open] .item-summary-arrow { transform:rotate(180deg); }
+        .item-detail { padding:10px; border-top:1px solid #eee; background:#fafafa; }
+
+        .variant-list { display:grid; gap:0; }
+        .variant-block { position:relative; padding-right:34px; }
+        .variant-remove-btn { position:absolute; top:6px; right:6px; width:24px; height:24px; line-height:1; border-radius:999px; border:1px solid #ddd; background:#fff; color:#c00; cursor:pointer; font-size:14px; }
+        .variant-remove-btn:hover { background:#fdecec; }
+        .variant-add-btn { margin-top:8px; padding:8px 14px; border-radius:8px; border:1px dashed #999; background:#fff; color:#111; cursor:pointer; font-size:13px; }
+        .variant-add-btn:hover { background:#f5f5f5; }
         
         @media (max-width: 640px) {
             .admin-left { flex-direction: row; align-items: center; }
@@ -364,6 +431,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             .admin-table th, .admin-table td { padding: 6px; }
             .thumb { width: 44px; height: 44px; }
             .admin-table form { grid-template-columns: 1fr !important; }
+            .item-summary { flex-wrap: wrap; }
+            .item-summary-name { flex-basis: 100%; }
             .btn { width: 100%; }
             .table-responsive { overflow-x: auto; }
             .menu-toggle { display:inline-flex; }
@@ -409,10 +478,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="admin-card" style="margin:0;">
                     <h3>Menü Öğesi</h3>
                     <div><?php echo (int)$itemCount; ?></div>
-                </div>
-                <div class="admin-card" style="margin:0;">
-                    <h3>Favoriler</h3>
-                    <div><?php echo (int)$favCount; ?></div>
                 </div>
             </div>
         </div>
@@ -462,10 +527,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div>
                         <label>Twitter/X</label>
                         <input type="text" name="twitter" value="<?php echo h((string)$config['social']['twitter']); ?>">
-                    </div>
-                    <div>
-                        <label>WiFi Şifresi</label>
-                        <input type="text" name="wifi_password" value="<?php echo h((string)($config['wifi_password'] ?? '')); ?>">
                     </div>
                     <div>
                         <label>Header Arkaplan</label>
@@ -561,7 +622,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php if ($tab==='menuler'): ?>
         <div class="admin-card" id="menuler">
             <h2>Menü Öğeleri</h2>
-            <form method="post" enctype="multipart/form-data" class="admin-list">
+            <form method="post" enctype="multipart/form-data" class="admin-list" id="addItemForm">
                 <input type="hidden" name="action" value="add_item">
                 <input type="hidden" name="ret" value="menuler">
                 <input type="hidden" name="anchor" value="menuler">
@@ -569,46 +630,53 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div><input type="text" name="item_name" placeholder="Ad"></div>
                     <div><input type="text" name="item_price" placeholder="Fiyat"></div>
                     <div>
-                        <select name="item_category">
+                        <select name="item_category" id="addItemCategory">
                             <option value="">Kategori seçin</option>
                             <?php foreach ($categories as $cat): ?>
                                 <option value="<?php echo h((string)$cat['id']); ?>"><?php echo h((string)$cat['name']); ?></option>
                             <?php endforeach; ?>
 
                         </select>
+                        <div id="addItemCategoryWarning" class="field-warning" style="display:none;">Lütfen bir kategori seçin. Girdiğiniz bilgiler kaybolmayacak.</div>
                     </div>
                 </div>
                 <div class="row">
                     <input type="text" name="item_desc" placeholder="Açıklama" maxlength="80">
                     <input type="file" name="item_image" accept="image/*">
-                    <label style="display:flex;align-items:center;gap:6px;"><input type="checkbox" name="item_favorite" value="1"> Favori</label>
                     <button class="btn" type="submit">Ekle</button>
                 </div>
+                <div style="font-weight:600;font-size:12px;margin-top:8px;">Temel Bilgiler (boy/çeşit eklenmezse veya seçilmediğinde gösterilir)</div>
+                <div class="nutrition-fields" style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:4px;">
+                    <?php foreach (NUTRITION_FIELDS as $nkey => $nlabel): ?>
+                        <input type="text" inputmode="decimal" name="item_nutrition[<?php echo h($nkey); ?>]" placeholder="<?php echo h($nlabel); ?>">
+                    <?php endforeach; ?>
+                </div>
+                <div class="row" style="margin-top:8px;">
+                    <input type="text" name="item_allergen" placeholder="Alerjen Bilgileri (örn: Gluten, Süt, Fındık, Yumurta)" maxlength="150" style="flex:1;">
+                </div>
+                <div style="font-weight:600;font-size:12px;margin-top:10px;">Boy / Çeşit Seçenekleri (opsiyonel — içeceklerde boy farkına göre besin değeri/alerjen değişiyorsa gerektiğinde ekleyin)</div>
+                <div class="variant-list" id="addVariantsContainer" data-prefix="item_var"></div>
+                <button type="button" class="variant-add-btn" data-add-target="addVariantsContainer">+ Boy / Çeşit Ekle</button>
             </form>
-            <div class="table-responsive">
-            <table class="admin-table" style="margin-top:10px;">
-                <thead><tr><th>Görsel</th><th>Ad</th><th>Fiyat</th><th>Kategori</th><th>Favori</th><th>İşlem</th></tr></thead>
-                <tbody>
-                    <?php foreach ($menu as $it): ?>
-                        <tr id="item-<?php echo h((string)$it['id']); ?>">
-                            <td>
-                                <?php if (!empty($it['image'])): ?>
-                                    <img class="thumb" src="<?php echo h((string)$it['image']); ?>" alt="">
-                                <?php else: ?>
-                                    <span class="thumb"></span>
-                                <?php endif; ?>
-                            </td>
-                            <td><?php echo h((string)$it['name']); ?></td>
-                            <td><?php echo h(fmt_price((string)$it['price'])); ?></td>
-                            <td>
-                                <?php
-                                $cn = '';
-                                foreach ($categories as $cat) { if ((string)$cat['id'] === (string)$it['category_id']) { $cn = $cat['name']; break; } }
-                                echo h((string)$cn);
-                                ?>
-                            </td>
-                            <td><?php echo !empty($it['favorite'])? 'Evet':'Hayır'; ?></td>
-                            <td>
+            <div class="item-accordion">
+                <?php foreach ($menu as $it): ?>
+                    <?php
+                    $cn = '';
+                    foreach ($categories as $cat) { if ((string)$cat['id'] === (string)$it['category_id']) { $cn = $cat['name']; break; } }
+                    ?>
+                    <details class="item-row" id="item-<?php echo h((string)$it['id']); ?>">
+                        <summary class="item-summary">
+                            <?php if (!empty($it['image'])): ?>
+                                <img class="thumb" src="<?php echo h((string)$it['image']); ?>" alt="">
+                            <?php else: ?>
+                                <span class="thumb"></span>
+                            <?php endif; ?>
+                            <span class="item-summary-name"><?php echo h((string)$it['name']); ?></span>
+                            <span class="item-summary-price"><?php echo h(fmt_price((string)$it['price'])); ?></span>
+                            <span class="item-summary-cat"><?php echo h((string)$cn); ?></span>
+                            <span class="item-summary-arrow" aria-hidden="true">▾</span>
+                        </summary>
+                        <div class="item-detail">
                                 <form method="post" enctype="multipart/form-data" style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px;align-items:center;">
                                     <input type="hidden" name="action" value="edit_item">
                                     <input type="hidden" name="id" value="<?php echo h((string)$it['id']); ?>">
@@ -617,20 +685,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <input type="text" name="item_name" value="<?php echo h((string)$it['name']); ?>" placeholder="Ad">
                                     <input type="text" name="item_price" value="<?php echo h((string)$it['price']); ?>" placeholder="Fiyat">
                                     <input type="text" name="item_desc" value="<?php echo h((string)($it['desc'] ?? '')); ?>" placeholder="Açıklama" maxlength="80" style="grid-column:1/-1;">
-                                    <div style="grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:6px;">
-                                        <?php $vars = isset($it['variants']) && is_array($it['variants']) ? $it['variants'] : []; foreach ($vars as $v): ?>
-                                            <input type="text" name="edit_var_name[]" value="<?php echo h((string)($v['name'] ?? '')); ?>" placeholder="Çeşit adı">
-                                            <input type="text" name="edit_var_price[]" value="<?php echo h((string)($v['price'] ?? '')); ?>" placeholder="Çeşit fiyatı">
+                                    <div style="grid-column:1/-1;font-weight:600;font-size:12px;margin-top:6px;">Temel Bilgiler (boy/çeşit seçilmediğinde gösterilir)</div>
+                                    <div class="nutrition-fields" style="grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;">
+                                        <?php $itn = isset($it['nutrition']) && is_array($it['nutrition']) ? $it['nutrition'] : []; foreach (NUTRITION_FIELDS as $nkey => $nlabel): ?>
+                                            <input type="text" inputmode="decimal" name="item_nutrition[<?php echo h($nkey); ?>]" value="<?php echo h((string)($itn[$nkey] ?? '')); ?>" placeholder="<?php echo h($nlabel); ?>">
                                         <?php endforeach; ?>
-                                        <input type="text" name="edit_var_name[]" value="" placeholder="Çeşit adı">
-                                        <input type="text" name="edit_var_price[]" value="" placeholder="Çeşit fiyatı">
+                                    </div>
+                                    <input type="text" name="item_allergen" value="<?php echo h((string)($it['allergen'] ?? '')); ?>" placeholder="Alerjen Bilgileri (örn: Gluten, Süt, Fındık, Yumurta)" maxlength="150" style="grid-column:1/-1;">
+                                    <div style="grid-column:1/-1;font-weight:600;font-size:12px;margin-top:10px;">Boy / Çeşit Seçenekleri (her boyun kendi bilgileri)</div>
+                                    <div style="grid-column:1/-1;">
+                                        <div class="variant-list" id="editVariants-<?php echo h((string)$it['id']); ?>" data-prefix="edit_var">
+                                        <?php $vars = isset($it['variants']) && is_array($it['variants']) ? $it['variants'] : []; $vi = 0; foreach ($vars as $v): $vnut = isset($v['nutrition']) && is_array($v['nutrition']) ? $v['nutrition'] : []; ?>
+                                        <div class="variant-block" style="border:1px solid #eee;border-radius:8px;padding:8px;margin-top:6px;">
+                                            <button type="button" class="variant-remove-btn" aria-label="Kaldır">×</button>
+                                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+                                                <input type="text" name="edit_var_name[]" value="<?php echo h((string)($v['name'] ?? '')); ?>" placeholder="Boy/Çeşit adı (örn: 330ml)">
+                                                <input type="text" name="edit_var_price[]" value="<?php echo h((string)($v['price'] ?? '')); ?>" placeholder="Çeşit fiyatı">
+                                            </div>
+                                            <input type="text" name="edit_var_allergen[]" value="<?php echo h((string)($v['allergen'] ?? '')); ?>" placeholder="Bu boy için Alerjen Bilgileri" maxlength="150" style="width:100%;margin-top:6px;box-sizing:border-box;">
+                                            <div class="nutrition-fields" style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:6px;">
+                                                <?php foreach (NUTRITION_FIELDS as $nkey => $nlabel): ?>
+                                                    <input type="text" inputmode="decimal" data-nkey="<?php echo h($nkey); ?>" name="edit_var_nutrition[<?php echo (int)$vi; ?>][<?php echo h($nkey); ?>]" value="<?php echo h((string)($vnut[$nkey] ?? '')); ?>" placeholder="<?php echo h($nlabel); ?>">
+                                                <?php endforeach; ?>
+                                            </div>
+                                        </div>
+                                        <?php $vi++; endforeach; ?>
+                                        </div>
+                                        <button type="button" class="variant-add-btn" data-add-target="editVariants-<?php echo h((string)$it['id']); ?>">+ Boy / Çeşit Ekle</button>
                                     </div>
                                     <select name="item_category">
                                         <?php foreach ($categories as $cat): ?>
                                             <option value="<?php echo h((string)$cat['id']); ?>" <?php echo ((string)$cat['id'] === (string)$it['category_id'])? 'selected':''; ?>><?php echo h((string)$cat['name']); ?></option>
                                         <?php endforeach; ?>
                                     </select>
-                                    <label style="display:flex;align-items:center;gap:6px;"><input type="checkbox" name="item_favorite" value="1" <?php echo !empty($it['favorite'])? 'checked':''; ?>> Favori</label>
                                     <input type="file" name="edit_item_image" accept="image/*">
                                     <button class="btn" type="submit">Güncelle</button>
                                 </form>
@@ -641,17 +728,76 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <input type="hidden" name="anchor" value="menuler">
                                     <button class="btn" type="submit" onclick="return confirm('Menü öğesi silinecek, onaylıyor musunuz?');">Sil</button>
                                 </form>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                        </div>
+                    </details>
+                <?php endforeach; ?>
             </div>
         </div>
         <?php endif; ?>
 
         
     </div>
+    <script>window.__NUTRITION_FIELDS__ = <?php echo json_encode(NUTRITION_FIELDS, JSON_UNESCAPED_UNICODE); ?>;</script>
+    <script>
+    (function(){
+        var NUT = window.__NUTRITION_FIELDS__ || {};
+
+        function esc(s){
+            return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
+                return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];
+            });
+        }
+
+        function reindex(container, prefix) {
+            var blocks = container.querySelectorAll('.variant-block');
+            blocks.forEach(function(block, idx){
+                block.querySelectorAll('[data-nkey]').forEach(function(inp){
+                    var key = inp.getAttribute('data-nkey');
+                    inp.name = prefix + '_nutrition[' + idx + '][' + key + ']';
+                });
+            });
+        }
+
+        function buildBlockHTML(prefix) {
+            var nutHtml = '';
+            Object.keys(NUT).forEach(function(key){
+                nutHtml += '<input type="text" inputmode="decimal" data-nkey="' + esc(key) + '" name="' + prefix + '_nutrition[0][' + esc(key) + ']" placeholder="' + esc(NUT[key]) + '">';
+            });
+            return '<div class="variant-block" style="border:1px dashed #ccc;border-radius:8px;padding:8px;margin-top:6px;">' +
+                        '<button type="button" class="variant-remove-btn" aria-label="Kaldır">&times;</button>' +
+                        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">' +
+                            '<input type="text" name="' + prefix + '_name[]" placeholder="Boy/Çeşit adı (örn: 250ml)">' +
+                            '<input type="text" name="' + prefix + '_price[]" placeholder="Çeşit fiyatı">' +
+                        '</div>' +
+                        '<input type="text" name="' + prefix + '_allergen[]" placeholder="Bu boy için Alerjen Bilgileri" maxlength="150" style="width:100%;margin-top:6px;box-sizing:border-box;">' +
+                        '<div class="nutrition-fields" style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:6px;">' + nutHtml + '</div>' +
+                    '</div>';
+        }
+
+        document.addEventListener('click', function(e){
+            var addBtn = e.target.closest && e.target.closest('.variant-add-btn');
+            if (addBtn) {
+                e.preventDefault();
+                var container = document.getElementById(addBtn.getAttribute('data-add-target'));
+                if (!container) return;
+                var prefix = container.getAttribute('data-prefix') || 'item_var';
+                var wrap = document.createElement('div');
+                wrap.innerHTML = buildBlockHTML(prefix);
+                container.appendChild(wrap.firstChild);
+                reindex(container, prefix);
+                return;
+            }
+            var rmBtn = e.target.closest && e.target.closest('.variant-remove-btn');
+            if (rmBtn) {
+                e.preventDefault();
+                var block = rmBtn.closest('.variant-block');
+                var list = block ? block.closest('.variant-list') : null;
+                if (block) block.remove();
+                if (list) reindex(list, list.getAttribute('data-prefix') || 'item_var');
+            }
+        });
+    })();
+    </script>
     <script>
     (function(){
         var t = document.getElementById('adminMenuToggle');
@@ -660,14 +806,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (h) {
             var el = document.getElementById(h);
             if (el) {
-                if (el.tagName && el.tagName.toLowerCase() === 'tr') {
+                var tag = el.tagName ? el.tagName.toLowerCase() : '';
+                if (tag === 'tr') {
                     el.classList.add('highlight-row');
                     setTimeout(function(){ el.classList.remove('highlight-row'); }, 1800);
+                } else if (tag === 'details') {
+                    el.open = true;
+                    el.classList.add('highlight-box');
+                    setTimeout(function(){ el.classList.remove('highlight-box'); }, 1800);
                 } else {
                     el.classList.add('highlight-box');
                     setTimeout(function(){ el.classList.remove('highlight-box'); }, 1800);
                 }
             }
+        }
+
+        // Ürün ekleme formunda kategori seçilmeden kaydı engelle, girilen bilgileri kaybetmeden uyar
+        var addForm = document.getElementById('addItemForm');
+        var addCat = document.getElementById('addItemCategory');
+        var addWarn = document.getElementById('addItemCategoryWarning');
+        if (addForm && addCat && addWarn) {
+            addForm.addEventListener('submit', function(e){
+                if (!addCat.value) {
+                    e.preventDefault();
+                    addWarn.style.display = 'block';
+                    addCat.classList.add('field-error');
+                    addCat.focus();
+                }
+            });
+            addCat.addEventListener('change', function(){
+                if (addCat.value) {
+                    addWarn.style.display = 'none';
+                    addCat.classList.remove('field-error');
+                }
+            });
         }
     })();
     </script>

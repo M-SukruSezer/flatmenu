@@ -78,9 +78,6 @@ function fmt_price($p): string {
 <body>
     <header class="site-header" style="<?php echo $headerBg? 'background:'.h($headerBg):''; ?>">
         <div class="header-left">
-            <button id="wifiToggle" class="icon-btn" aria-label="WiFi">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 20c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6.6-6.6c-3.6-3.6-9.6-3.6-13.2 0-.4.4-1 .4-1.4 0s-.4-1 0-1.4c4.4-4.4 11.6-4.4 16 0 .4.4.4 1 0 1.4s-1 .4-1.4 0zm3.5-3.5c-5.6-5.6-14.7-5.6-20.3 0-.4.4-1 .4-1.4 0s-.4-1 0-1.4c6.4-6.4 16.7-6.4 23.1 0 .4.4.4 1 0 1.4s-1 .4-1.4 0z"/></svg>
-            </button>
         </div>
         <div class="header-center">
             <?php if ($logo): ?>
@@ -90,79 +87,10 @@ function fmt_price($p): string {
             <?php endif; ?>
         </div>
         <div class="header-right">
-            <button id="searchToggle" class="icon-btn" aria-label="Ara">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-            </button>
         </div>
     </header>
-    <div id="wifiModal" class="modal">
-        <div class="modal-backdrop"></div>
-        <div class="modal-content">
-            <button id="wifiClose" class="modal-close" aria-label="Kapat">×</button>
-            <div class="modal-body">
-                <div class="modal-logo">
-                    <?php if ($logo): ?>
-                        <img class="logo" src="<?php echo h($logo); ?>" alt="<?php echo h($title); ?>">
-                    <?php else: ?>
-                        <div class="logo-text"><?php echo h($title); ?></div>
-                    <?php endif; ?>
-                </div>
-                <div class="wifi-info">
-                    <div class="wifi-title">WiFi Şifresi</div>
-                    <div class="wifi-pass"><?php echo h((string)($config['wifi_password'] ?? '')); ?></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="variantsModal" class="modal">
-        <div class="modal-backdrop"></div>
-        <div class="modal-content">
-            <button id="varClose" class="modal-close" aria-label="Kapat">×</button>
-            <div class="modal-body">
-                <div class="modal-logo">
-                    <?php if ($logo): ?>
-                        <img class="logo" src="<?php echo h($logo); ?>" alt="<?php echo h($title); ?>">
-                    <?php else: ?>
-                        <div class="logo-text"><?php echo h($title); ?></div>
-                    <?php endif; ?>
-                </div>
-                <div class="wifi-info">
-                    <div class="wifi-title" id="varTitle">Çeşitler</div>
-                    <ul class="var-list" id="varList"></ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="searchBar" class="search-bar">
-        <input type="text" id="searchInput" placeholder="Ara">
-        <div id="searchResults" class="search-results"></div>
-    </div>
 
     <main class="container">
-        <section class="favorites">
-            <h2>Favori Menüler</h2>
-            <div class="fav-list">
-                <?php foreach ($menu as $item): ?>
-                    <?php if (!empty($item['favorite'])): ?>
-                        <a class="fav-card" href="category.php?id=<?php echo h((string)($item['category_id'] ?? '')); ?>#item-<?php echo h((string)($item['id'] ?? '')); ?>">
-                            <div class="fav-img" style="<?php echo !empty($item['image'])? 'background-image:url('.h($item['image']).')':''; ?>"></div>
-                            <div class="fav-info">
-                                <div class="fav-name">
-                                    <?php echo h((string)($item['name'] ?? '')); ?>
-                                    <?php $vars = isset($item['variants']) && is_array($item['variants']) ? $item['variants'] : []; if (count($vars) > 0): $vdata = array_map(function($v){ return ['name'=>(string)($v['name']??''),'price'=>fmt_price($v['price']??'')]; }, $vars); $vjson = json_encode($vdata, JSON_UNESCAPED_UNICODE); $venc = rawurlencode((string)$vjson); ?>
-                                    <button class="fav-var-btn" type="button" aria-label="Çeşitler" data-name="<?php echo h((string)($item['name'] ?? '')); ?>" data-variants="<?php echo h($venc); ?>">
-                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2l3 7h7l-6 4 3 7-6-4-6 4 3-7-6-4h7z"/></svg>
-                                    </button>
-                                    <?php endif; ?>
-                                </div>
-                                <div class="fav-price"><?php echo h(fmt_price($item['price'] ?? '')); ?></div>
-                            </div>
-                        </a>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-            </div>
-        </section>
-
         <section class="categories">
             <div class="cat-header">
                 <h2>Kategoriler</h2>
@@ -199,9 +127,9 @@ function fmt_price($p): string {
             </a>
             <?php endif; ?>
         </div>
+        <div class="footer-copyright">Colombia Plus Kurumsal.</div>
     </footer>
 
-    <script>window.__SEARCH__ = { categories: <?php echo json_encode(array_map(function($c){ return ['id'=>(string)($c['id']??''),'name'=>(string)($c['name']??'')]; }, $categories), JSON_UNESCAPED_UNICODE); ?>, menu: <?php echo json_encode(array_map(function($m){ return ['id'=>(string)($m['id']??''),'name'=>(string)($m['name']??''),'category_id'=>(string)($m['category_id']??'')]; }, $menu), JSON_UNESCAPED_UNICODE); ?> };</script>
     <script src="assets/js/app.js"></script>
 </body>
 </html>
