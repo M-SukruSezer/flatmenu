@@ -1,14 +1,14 @@
 {
-    "site_title": "COLOMBİA",
+    "site_title": "FlatMenu Café",
     "footer_text": "",
-    "logo": "uploads\/u_6a715071978ba4.08384896.svg",
-    "favicon": "uploads\/u_6a712b224078e0.75056169.png",
+    "logo": "",
+    "favicon": "",
     "social": {
         "facebook": "",
         "instagram": "",
         "twitter": ""
     },
-    "admin_password_hash": "$2y$10$ye8ugthW.99tyF95l1O4neUnNCxR55Ir0ctLN\/qpyM3JxWiglU5Au",
-    "header_bg": "#b1d3c9",
-    "footer_bg": "#b1d3c9"
+    "admin_password_hash": "$2y$10$ye8ugthW.99tyF95l1O4neUnNCxR55Ir0ctLN/qpyM3JxWiglU5Au",
+    "header_bg": "",
+    "footer_bg": ""
 }

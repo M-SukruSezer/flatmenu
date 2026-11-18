@@ -131,12 +131,24 @@ if (empty($_SESSION['admin'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Admin Giriş</title>
         <link rel="stylesheet" href="assets/css/style.css">
-        <style>.admin-wrap{max-width:420px;margin:40px auto;padding:16px}.admin-card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 2px 10px rgba(0,0,0,.06)}.row{display:grid;gap:8px}input[type=password]{width:100%;padding:10px;border:1px solid #ddd;border-radius:8px}.btn{padding:10px 14px;border-radius:8px;border:none;background:#111;color:#fff}.error{color:#c00;margin-top:8px}</style>
+        <style>
+            .admin-wrap{max-width:420px;margin:56px auto;padding:22px;width:100%}
+            .admin-card{background:var(--paper);border:1px solid var(--rule);border-radius:2px;padding:26px 22px}
+            .admin-card h2{font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.1;margin:0 0 4px}
+            .admin-card .hint{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-2);margin-bottom:18px}
+            .row{display:grid;gap:12px}
+            input[type=password]{width:100%;padding:12px;border:1px solid var(--rule);border-radius:2px;background:#fff;font:inherit;font-size:16px;color:var(--ink)}
+            input[type=password]:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+            .btn{padding:12px 16px;border-radius:2px;border:none;background:var(--accent);color:#fff;font:inherit;font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:12.5px;cursor:pointer}
+            .btn:hover{background:#8d3c25}
+            .error{color:#c0392b;margin-top:4px;font-size:13px}
+        </style>
     </head>
     <body>
         <div class="admin-wrap">
             <div class="admin-card">
-                <h2><?php echo $hasPwd? 'Admin Giriş':'Admin Şifre Oluştur'; ?></h2>
+                <h2><?php echo $hasPwd? 'Yönetim':'Şifre oluştur'; ?></h2>
+                <div class="hint"><?php echo $hasPwd? 'Menü paneli':'İlk kurulum'; ?></div>
                 <form method="post" class="row">
                     <input type="hidden" name="action" value="<?php echo $hasPwd? 'login':'set_admin_password'; ?>">
                     <input type="password" name="password" placeholder="Şifre">
@@ -378,60 +390,90 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Admin</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        .admin-wrap { max-width: 900px; margin: 0 auto; padding: 16px; }
-        .admin-card { background: #fff; border-radius: 12px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
-        .admin-header { position: sticky; top: 0; z-index: 10; background: #fff; border-bottom: 1px solid #eee; }
-        .admin-nav { display: flex; align-items: center; justify-content: space-between; max-width: 900px; margin: 0 auto; padding: 10px 16px; }
+        /* Yönetim paneli, menü ile aynı dili konuşur: kağıt zemin, ince çizgi,
+           serif başlık, terracotta eylem rengi. Değişkenler style.css'ten gelir. */
+        body { background: var(--paper-2); }
+        .admin-wrap { max-width: 900px; margin: 0 auto; padding: 22px 16px 60px; width: 100%; }
+        .admin-card { background: var(--paper); border: 1px solid var(--rule); border-radius: 2px; padding: 20px 18px; margin-bottom: 18px; }
+        .admin-card > h2:first-child { font-family: var(--serif); font-weight: 400; font-size: 27px; line-height: 1.1; margin: 0 0 16px; }
+        .admin-card h3 { font-family: var(--serif); font-weight: 400; font-size: 20px; margin: 0 0 10px; }
+
+        .admin-header { position: sticky; top: 0; z-index: 10; background: var(--paper); border-bottom: 1px solid var(--rule); }
+        .admin-nav { display: flex; align-items: center; justify-content: space-between; max-width: 900px; margin: 0 auto; padding: 11px 16px; }
         .admin-left { display:flex; align-items:center; gap:8px; }
-        .admin-tabs { display:flex; gap:10px; }
-        .admin-tabs a { padding:8px 12px; border-radius:8px; text-decoration:none; color:#111; border:1px solid #eee; }
-        .admin-tabs a.active { background:#111; color:#fff; border-color:#111; }
+        .admin-left .logo-text { font-size: 19px; }
+        .admin-tabs { display:flex; gap:7px; }
+        .admin-tabs a { padding:8px 13px; border-radius:2px; text-decoration:none; color:var(--ink-2);
+                        border:1px solid var(--rule); font-size:12.5px; font-weight:700;
+                        letter-spacing:.06em; text-transform:uppercase; white-space:nowrap; }
+        .admin-tabs a:hover { color:var(--ink); border-color:var(--ink-3); }
+        .admin-tabs a.active { background:var(--ink); color:var(--paper); border-color:var(--ink); }
         .admin-actions { display:flex; align-items:center; gap:8px; }
-        .icon-btn { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; border:1px solid #eee; background:#fff; color:#111; text-decoration:none; }
+        .icon-btn { display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px;
+                    border-radius:2px; border:1px solid var(--rule); background:var(--paper); color:var(--ink); text-decoration:none; }
+        .icon-btn:hover { border-color:var(--ink-3); }
         .menu-toggle { display:none; }
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
         .admin-list { display: grid; gap: 8px; }
-
         .row { display:flex; align-items:center; gap:8px; }
-        .admin-table { width:100%; border-collapse: collapse; }
-        .admin-table th, .admin-table td { border-bottom: 1px solid #eee; padding: 8px; text-align: left; }
-        input[type=text], select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; }
-        input[type=file] { width: 100%; }
-        .btn { padding: 10px 14px; border-radius: 8px; border: none; background:#111; color:#fff; }
-        .thumb { width: 56px; height: 56px; border-radius: 8px; object-fit: cover; background: #eee; display: inline-block; }
-        .highlight-row td { background: #fff3cd !important; }
-        .highlight-box { background: #fffbe6 !important; box-shadow: 0 0 0 2px #ffe08a inset; }
-        .field-warning { color:#c00; font-size:12px; margin-top:6px; }
-        select.field-error { border-color:#c00; box-shadow:0 0 0 1px #c00; }
 
-        .item-accordion { display:grid; gap:8px; margin-top:10px; }
-        .item-row { border:1px solid #eee; border-radius:10px; overflow:hidden; }
-        .item-row[open] { box-shadow:0 2px 10px rgba(0,0,0,.06); }
-        .item-summary { list-style:none; display:flex; align-items:center; gap:10px; padding:10px; cursor:pointer; background:#fff; }
+        label { display:block; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+                color:var(--ink-2); margin-bottom:5px; }
+
+        .admin-table { width:100%; border-collapse: collapse; }
+        .admin-table th { font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-2); font-weight:700; }
+        .admin-table th, .admin-table td { border-bottom: 1px solid var(--rule-soft); padding: 9px 8px; text-align: left; }
+
+        input[type=text], input[type=password], select, textarea {
+            width: 100%; padding: 10px 11px; border: 1px solid var(--rule); border-radius: 2px;
+            background:#fff; font: inherit; font-size: 16px; color: var(--ink); }
+        input[type=text]:focus, input[type=password]:focus, select:focus {
+            outline:2px solid var(--accent); outline-offset:1px; border-color:var(--accent); }
+        input[type=file] { width: 100%; font-size: 13px; }
+        input[type=color] { width:46px; height:34px; padding:2px; border:1px solid var(--rule); border-radius:2px; background:#fff; }
+
+        .btn { padding: 11px 16px; border-radius: 2px; border: none; background: var(--accent); color: #fff;
+               font: inherit; font-weight: 700; font-size: 12.5px; letter-spacing: .06em;
+               text-transform: uppercase; cursor: pointer; }
+        .btn:hover { background:#8d3c25; }
+        .btn[formaction*="delete"], .btn.danger { background: var(--ink); }
+
+        .thumb { width: 58px; height: 58px; border-radius: 2px; object-fit: cover; background: var(--paper-3); display: inline-block; }
+        .highlight-row td { background: var(--accent-soft) !important; }
+        .highlight-box { background: var(--accent-soft) !important; box-shadow: 0 0 0 2px var(--accent) inset; }
+        .field-warning { color:#c0392b; font-size:12px; margin-top:6px; }
+        select.field-error { border-color:#c0392b; box-shadow:0 0 0 1px #c0392b; }
+
+        .item-accordion { display:block; margin-top:4px; border-top:1px solid var(--rule); }
+        .item-row { border-bottom:1px solid var(--rule); background:var(--paper); }
+        .item-summary { list-style:none; display:flex; align-items:center; gap:10px; padding:11px; cursor:pointer; }
         .item-summary::-webkit-details-marker { display:none; }
-        .item-summary-name { font-weight:600; flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-        .item-summary-price { font-weight:600; white-space:nowrap; }
-        .item-summary-cat { color:#666; font-size:13px; white-space:nowrap; }
-        .item-summary-arrow { transition:transform .15s ease; color:#666; }
+        .item-summary-name { font-weight:700; flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+        .item-summary-price { font-family:var(--serif); font-size:17px; white-space:nowrap; }
+        .item-summary-cat { color:var(--ink-2); font-size:12.5px; white-space:nowrap; }
+        .item-summary-arrow { transition:transform .15s ease; color:var(--ink-2); }
         .item-row[open] .item-summary-arrow { transform:rotate(180deg); }
-        .item-detail { padding:10px; border-top:1px solid #eee; background:#fafafa; }
+        .item-detail { padding:14px 11px 18px; background:var(--paper-2); }
 
         .variant-list { display:grid; gap:0; }
         .variant-block { position:relative; padding-right:34px; }
-        .variant-remove-btn { position:absolute; top:6px; right:6px; width:24px; height:24px; line-height:1; border-radius:999px; border:1px solid #ddd; background:#fff; color:#c00; cursor:pointer; font-size:14px; }
-        .variant-remove-btn:hover { background:#fdecec; }
-        .variant-add-btn { margin-top:8px; padding:8px 14px; border-radius:8px; border:1px dashed #999; background:#fff; color:#111; cursor:pointer; font-size:13px; }
-        .variant-add-btn:hover { background:#f5f5f5; }
-        
+        .variant-remove-btn { position:absolute; top:6px; right:6px; width:26px; height:26px; line-height:1;
+                              border-radius:2px; border:1px solid var(--rule); background:#fff; color:#c0392b; cursor:pointer; font-size:14px; }
+        .variant-remove-btn:hover { background:#fdecec; border-color:#c0392b; }
+        .variant-add-btn { margin-top:10px; padding:9px 14px; border-radius:2px; border:1px dashed var(--ink-3);
+                           background:transparent; color:var(--ink); cursor:pointer; font:inherit; font-size:13px; }
+        .variant-add-btn:hover { background:var(--paper-3); }
+
         @media (max-width: 640px) {
             .admin-left { flex-direction: row; align-items: center; }
             .grid-2 { grid-template-columns: 1fr; }
             .row { flex-direction: column; align-items: stretch; }
-            .admin-wrap { padding: 12px; }
-            .admin-card { padding: 12px; }
+            .admin-wrap { padding: 14px 12px 60px; }
+            .admin-card { padding: 15px 13px; }
             .admin-table { font-size: 13px; }
-            .admin-table th, .admin-table td { padding: 6px; }
-            .thumb { width: 44px; height: 44px; }
+            .admin-table th, .admin-table td { padding: 7px 6px; }
+            .thumb { width: 46px; height: 46px; }
             .admin-table form { grid-template-columns: 1fr !important; }
             .item-summary { flex-wrap: wrap; }
             .item-summary-name { flex-basis: 100%; }

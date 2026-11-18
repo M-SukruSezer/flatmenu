@@ -44,20 +44,31 @@ Siz de menüyü tarayıcı üzerinden, admin panelinden yönetirsiniz.
 
 ### 🖥️ Ekran görüntüleri
 
-**Müşteri menüsü**
-QR kod okutulduğunda açılan sayfa. Kategoriler, her biri kendi düzeniyle (tam genişlik, iki sütun, dikey) listelenir:
+Solda QR kod okutulduğunda açılan ana sayfa, sağda bir kategorinin ürün listesi:
 
-<img src="docs/screenshots/menu-home.jpg" width="320" alt="Müşteri menüsü ana sayfası">
+<img src="docs/screenshots/menu-home.jpg" width="300" alt="Müşteri menüsü ana sayfası">
+<img src="docs/screenshots/menu-category.jpg" width="300" alt="Kategori ve ürün listesi">
 
-**Yönetim paneli — Kategoriler**
-Kategori ekleme, kapak görseli yükleme, düzen seçimi (Tam / Dikey / Yan Yana) ve görünürlük kontrolü:
+### 🎨 Tasarım
 
-![Yönetim paneli kategoriler ekranı](docs/screenshots/admin-categories.jpg)
+Arayüz **iyi bir restoranın basılı menü kartı** gibi kurgulandı: kağıt beyazı zemin, geniş kenar
+boşluğu, iri serif başlıklar ve sakin fotoğraflar.
 
-**Yönetim paneli — Ayarlar**
-Site başlığı, logo, favicon, header/footer renkleri, sosyal medya bağlantıları, önbellek temizleme ve şifre değiştirme:
+- **Fiyat rozet veya düğme değil** — basılı menüdeki gibi nokta dizisinin ucunda durur.
+  Uygulamadan sipariş verilmediği için rozet "satın alınabilir" izlenimi yaratırdı.
+- **Kategori adı fotoğrafın altında**, üstüne perde çekilmez; fotoğraf temiz kalır.
+- **Alerjen bilgisi asla gizlenmez.** Besin değerleri ikincil bilgidir, açılır satırda durur.
+- **Beyaz etiket**: palet ve yazı tipleri hiçbir mutfağa veya markaya bağlı değildir.
+  İşletme kendi logosunu, başlığını ve header/footer renklerini panelden değiştirir.
 
-![Yönetim paneli ayarlar ekranı](docs/screenshots/admin-settings.jpg)
+| | Değer |
+|---|---|
+| Kağıt | `#faf8f4` |
+| Mürekkep | `#16130f` |
+| Vurgu (terracotta) | `#a6492e` |
+| İnce çizgi | `#e0d8cb` |
+| Başlık / fiyat | Instrument Serif |
+| Gövde / etiket | Lato |
 
 ### 📦 Kurulum
 
@@ -217,21 +228,31 @@ You manage everything from a browser-based admin panel.
 
 ### 🖥️ Screenshots
 
-**Customer-facing menu**
-The page that opens when the QR code is scanned. Categories are listed, each with its own layout
-(full width, two columns, vertical):
+On the left, the page that opens when the QR code is scanned; on the right, a category's item list:
 
-<img src="docs/screenshots/menu-home.jpg" width="320" alt="Customer-facing menu home">
+<img src="docs/screenshots/menu-home.jpg" width="300" alt="Customer-facing menu home">
+<img src="docs/screenshots/menu-category.jpg" width="300" alt="Category and item list">
 
-**Admin — Categories**
-Create categories, upload cover images, pick a layout (Full / Vertical / Two-column) and toggle visibility:
+### 🎨 Design
 
-![Admin panel categories screen](docs/screenshots/admin-categories.jpg)
+The interface is built like a **printed menu card from a good restaurant**: paper-white background,
+generous margins, large serif headings and calm photography.
 
-**Admin — Settings**
-Site title, logo, favicon, header/footer colours, social links, cache clearing and password change:
+- **The price is not a badge or a button** — it sits at the end of a dotted leader, like print.
+  Nothing is orderable in the app, so a badge would imply "buy now".
+- **Category names sit below the photo**, never over it, so the photo stays clean.
+- **Allergen info is never collapsed.** Nutrition facts are secondary and live behind a disclosure.
+- **White label**: the palette and type are tied to no cuisine and no brand. Owners change the logo,
+  title and header/footer colours from the admin panel.
 
-![Admin panel settings screen](docs/screenshots/admin-settings.jpg)
+| | Value |
+|---|---|
+| Paper | `#faf8f4` |
+| Ink | `#16130f` |
+| Accent (terracotta) | `#a6492e` |
+| Hairline | `#e0d8cb` |
+| Headings / prices | Instrument Serif |
+| Body / labels | Lato |
 
 ### 📦 Installation
 

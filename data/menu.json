@@ -3,7 +3,7 @@
         "id": "m6a712cf675979",
         "name": "Americano",
         "price": "",
-        "image": "uploads\/u_6a712e41955827.07017850.jpg",
+        "image": "uploads/u_6a712e41955827.07017850.jpg",
         "category_id": "c6930826586589",
         "desc": "",
         "allergen": "",
@@ -22,7 +22,7 @@
         "variants": [
             {
                 "name": "240 ml",
-                "price": "",
+                "price": "85",
                 "allergen": "-",
                 "nutrition": {
                     "kcal": "0,20",
@@ -39,7 +39,7 @@
             },
             {
                 "name": "360 ml",
-                "price": "",
+                "price": "95",
                 "allergen": "-",
                 "nutrition": {
                     "kcal": "0,30",
@@ -55,8 +55,8 @@
                 }
             },
             {
-                "name": "480ml",
-                "price": "",
+                "name": "480 ml",
+                "price": "110",
                 "allergen": "-",
                 "nutrition": {
                     "kcal": "0,50",
@@ -96,7 +96,7 @@
         "variants": [
             {
                 "name": "360 ml",
-                "price": "",
+                "price": "110",
                 "allergen": "Süt ve Süt ürünleri",
                 "nutrition": {
                     "kcal": "92,50",
@@ -113,7 +113,7 @@
             },
             {
                 "name": "480 ml",
-                "price": "",
+                "price": "125",
                 "allergen": "Süt ve Süt ürünleri",
                 "nutrition": {
                     "kcal": "131,80",
@@ -153,7 +153,7 @@
         "variants": [
             {
                 "name": "360 ml",
-                "price": "",
+                "price": "135",
                 "allergen": "Süt ve Süt ürünleri",
                 "nutrition": {
                     "kcal": "203,50",
@@ -170,7 +170,7 @@
             },
             {
                 "name": "480 ml",
-                "price": "",
+                "price": "150",
                 "allergen": "Süt ve Süt ürünleri",
                 "nutrition": {
                     "kcal": "255,00",
@@ -210,7 +210,7 @@
         "variants": [
             {
                 "name": "360 ml",
-                "price": "",
+                "price": "125",
                 "allergen": "Süt ve Süt ürünleri",
                 "nutrition": {
                     "kcal": "194,30",
@@ -227,7 +227,7 @@
             },
             {
                 "name": "480 ml",
-                "price": "",
+                "price": "140",
                 "allergen": "Süt ve Süt ürünleri",
                 "nutrition": {
                     "kcal": "246,80",
@@ -267,7 +267,7 @@
         "variants": [
             {
                 "name": "360 ml",
-                "price": "",
+                "price": "140",
                 "allergen": "Süt ve süt ürünleri. Eser miktarda gluten ve soya",
                 "nutrition": {
                     "kcal": "264,70",
@@ -284,7 +284,7 @@
             },
             {
                 "name": "480 ml",
-                "price": "",
+                "price": "155",
                 "allergen": "Süt ve süt ürünleri. Eser miktarda gluten ve soya",
                 "nutrition": {
                     "kcal": "343,70",
@@ -324,7 +324,7 @@
         "variants": [
             {
                 "name": "240 ml",
-                "price": "",
+                "price": "95",
                 "allergen": "Süt ve Süt ürünleri",
                 "nutrition": {
                     "kcal": "48,30",
@@ -364,7 +364,7 @@
         "variants": [
             {
                 "name": "240 ml",
-                "price": "",
+                "price": "40",
                 "allergen": "-",
                 "nutrition": {
                     "kcal": "0,80",
@@ -381,7 +381,7 @@
             },
             {
                 "name": "360 ml",
-                "price": "",
+                "price": "50",
                 "allergen": "-",
                 "nutrition": {
                     "kcal": "1,20",
@@ -398,7 +398,7 @@
             },
             {
                 "name": "480 ml",
-                "price": "",
+                "price": "60",
                 "allergen": "-",
                 "nutrition": {
                     "kcal": "1,60",
@@ -438,7 +438,7 @@
         "variants": [
             {
                 "name": "Solo",
-                "price": "",
+                "price": "70",
                 "allergen": "-",
                 "nutrition": {
                     "kcal": "0,20",
@@ -455,7 +455,7 @@
             },
             {
                 "name": "Doppie",
-                "price": "",
+                "price": "90",
                 "allergen": "-",
                 "nutrition": {
                     "kcal": "0,30",
@@ -495,7 +495,7 @@
         "variants": [
             {
                 "name": "Solo",
-                "price": "",
+                "price": "80",
                 "allergen": "Süt ve süt ürünleri. Eser miktarda soya",
                 "nutrition": {
                     "kcal": "41,20",
@@ -512,7 +512,7 @@
             },
             {
                 "name": "Doppie",
-                "price": "",
+                "price": "100",
                 "allergen": "Süt ve süt ürünleri. Eser miktarda soya",
                 "nutrition": {
                     "kcal": "41,30",
@@ -531,8 +531,8 @@
     },
     {
         "id": "m6a71453221028",
-        "name": "Schweppes Mandalina",
-        "price": "",
+        "name": "Maden Suyu",
+        "price": "55",
         "image": "",
         "category_id": "c6a711f9f8c3e4",
         "desc": "",
