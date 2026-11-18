@@ -55,6 +55,7 @@ $favicon = $config['favicon'] ?? '';
 $social = $config['social'] ?? ['facebook' => '', 'instagram' => '', 'twitter' => ''];
 $headerBg = (string)($config['header_bg'] ?? '');
 $footerBg = (string)($config['footer_bg'] ?? '');
+$footerText = trim((string)($config['footer_text'] ?? ''));
 
 function h(string $s): string { return htmlspecialchars($s, ENT_QUOTES, 'UTF-8'); }
 function fmt_price($p): string {
@@ -127,7 +128,9 @@ function fmt_price($p): string {
             </a>
             <?php endif; ?>
         </div>
-        <div class="footer-copyright">Colombia Plus Kurumsal.</div>
+        <?php if ($footerText !== ''): ?>
+        <div class="footer-copyright"><?php echo h($footerText); ?></div>
+        <?php endif; ?>
     </footer>
 
     <script src="assets/js/app.js"></script>
