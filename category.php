@@ -214,14 +214,18 @@ foreach ($items as $it) { if (!empty($it['image'])) { $anyPhoto = true; break; }
                         <?php if ($factRows): ?>
                         <details class="facts-toggle">
                             <summary>Besin değerleri</summary>
-                            <?php foreach ($factRows as $fr): ?>
-                            <div class="facts">
-                                <?php if ($fr['label'] !== '' && count($factRows) > 1): ?>
-                                <b class="facts-label"><?php echo h($fr['label']); ?></b>
-                                <?php endif; ?>
-                                <?php foreach ($fr['facts'] as $f): ?><span class="fact"><?php echo h($f); ?></span><?php endforeach; ?>
+                            <?php /* Açılırken yüksekliği canlandırılan tek sarmalayıcı */ ?>
+                            <div class="facts-body">
+                                <?php foreach ($factRows as $fr): ?>
+                                <div class="facts">
+                                    <?php if ($fr['label'] !== '' && count($factRows) > 1): ?>
+                                    <b class="facts-label"><?php echo h($fr['label']); ?></b>
+                                    <?php endif; ?>
+                                    <?php foreach ($fr['facts'] as $f): ?><span class="fact"><?php echo h($f); ?></span>
+                                    <?php endforeach; ?>
+                                </div>
+                                <?php endforeach; ?>
                             </div>
-                            <?php endforeach; ?>
                         </details>
                         <?php endif; ?>
 

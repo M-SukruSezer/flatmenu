@@ -284,18 +284,35 @@ a{color:inherit}
     color:var(--ink-2);
 }
 .facts-toggle > summary::-webkit-details-marker{display:none}
-.facts-toggle > summary::after{content:'+';font-size:14px;line-height:1;color:var(--ink-3)}
-.facts-toggle[open] > summary::after{content:'–'}
+/* İşaret: kapalıyken aşağı, açıkken yukarı bakan bir şerit.
+   Dönme, kağıdın açılma yönünü gösterir. */
+.facts-toggle > summary::after{
+    content:'\203A';
+    font-size:15px;line-height:1;color:var(--ink-3);
+    transform:rotate(90deg);
+    transition:transform .24s cubic-bezier(.2,.7,.3,1),color .18s ease;
+}
+.facts-toggle[open] > summary::after{transform:rotate(-90deg)}
 .facts-toggle > summary:hover{color:var(--ink)}
+.facts-toggle > summary:hover::after{color:var(--ink-2)}
+/* Basar basmaz karşılık ver: animasyon beklemeden */
+.facts-toggle > summary:active{color:var(--ink)}
 .facts-toggle > summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* Yüksekliği canlandırılan sarmalayıcı. JS yoksa <details> kendi
+   davranışıyla anında açılır; bu kural onu bozmaz. */
+.facts-body{overflow:hidden}
 
 .facts{
     margin-top:2px;padding-bottom:4px;
     font-size:11.5px;line-height:1.65;letter-spacing:.01em;
     color:var(--ink-2);
 }
+/* Sayı ile birimi aynı satırda tut; satır kırma fırsatı öğeler ARASINDAKİ
+   gerçek boşlukta olsun, ayracın içinde değil. Ayraç boşluğu da taşırsa
+   tüm satır tek bir kırılamaz parçaya dönüşüp sağdan kesiliyordu. */
 .facts .fact{white-space:nowrap}
-.facts span + span::before{content:' · ';color:var(--ink-3)}
+.facts .fact + .fact::before{content:'· ';color:var(--ink-3)}
 .facts-label{
     display:block;margin:0 0 1px;
     font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;

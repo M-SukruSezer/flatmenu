@@ -80,6 +80,9 @@ boşluğu, iri serif başlıklar ve sakin fotoğraflar.
   Uygulamadan sipariş verilmediği için rozet "satın alınabilir" izlenimi yaratırdı.
 - **Kategori adı fotoğrafın altında**, üstüne perde çekilmez; fotoğraf temiz kalır.
 - **Alerjen bilgisi asla gizlenmez.** Besin değerleri ikincil bilgidir, açılır satırda durur.
+- **Besin değerleri katlanmış bir iç sayfa gibi açılır.** Sayfadaki tek etkileşim burası:
+  260 ms açılır, 170 ms kapanır, yarıda tıklanırsa bulunduğu yerden devam eder. "Hareketi azalt"
+  açıkken ve JavaScript çalışmadığında `<details>` kendi doğal davranışına döner, bilgi kaybolmaz.
 - **Fotoğraf zorunlu değil.** Hiçbir kategoride kapak görseli yoksa ana sayfa, basılı menünün
   içindekiler sayfası gibi tipografik bir listeye döner. Panelden tek bir görsel yüklediğinizde
   kart ızgarasına geçer; görseli olmayan kategoriler sakin bir kağıt tonuyla durur.
@@ -290,6 +293,9 @@ generous margins, large serif headings and calm photography.
   Nothing is orderable in the app, so a badge would imply "buy now".
 - **Category names sit below the photo**, never over it, so the photo stays clean.
 - **Allergen info is never collapsed.** Nutrition facts are secondary and live behind a disclosure.
+- **Nutrition unfolds like a folded insert.** It is the only interaction on the page: 260 ms to
+  open, 170 ms to close, and it resumes from wherever it is if you interrupt it. Under reduced
+  motion, and with JavaScript off, `<details>` falls back to its native behaviour and nothing is lost.
 - **Photos are optional.** With no cover image on any category, the home page falls back to a
   typographic contents list, like the first page of a printed menu. Upload a single image from the
   admin panel and it switches to the card grid; categories without one sit in a calm paper tone.
