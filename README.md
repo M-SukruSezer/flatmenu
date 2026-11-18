@@ -44,8 +44,8 @@ Siz de menüyü tarayıcı üzerinden, admin panelinden yönetirsiniz.
 
 ### 🖥️ Ekran görüntüleri
 
-Solda QR kod okutulduğunda açılan ana sayfa, sağda bir kategorinin ürün listesi. Örnek veri
-görsel içermez; kendi fotoğraflarınızı panelden yükleyebilirsiniz:
+Solda QR kod okutulduğunda açılan ana sayfa, sağda bir kategorinin ürün listesi. Örnek veride 9 kategori ve
+48 ürün var, görsel yoktur; kendi fotoğraflarınızı panelden yükleyebilirsiniz:
 
 <img src="docs/screenshots/menu-home.jpg" width="300" alt="Müşteri menüsü ana sayfası">
 <img src="docs/screenshots/menu-category.jpg" width="300" alt="Kategori ve ürün listesi">
@@ -233,7 +233,8 @@ You manage everything from a browser-based admin panel.
 ### 🖥️ Screenshots
 
 On the left, the page that opens when the QR code is scanned; on the right, a category's item list.
-The sample data ships without photos; upload your own from the admin panel:
+The sample data has 9 categories and 48 items and ships without photos; upload your own from the
+admin panel:
 
 <img src="docs/screenshots/menu-home.jpg" width="300" alt="Customer-facing menu home">
 <img src="docs/screenshots/menu-category.jpg" width="300" alt="Category and item list">

@@ -550,5 +550,1173 @@
             "volume": ""
         },
         "variants": []
+    },
+    {
+        "id": "mbfeb37c7f5c18",
+        "name": "Karamelli Frappe",
+        "price": "",
+        "image": "",
+        "category_id": "c6930827426d61",
+        "desc": "Espresso, süt, karamel sosu ve buz",
+        "allergen": "",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": [
+            {
+                "name": "360 ml",
+                "price": "145",
+                "allergen": "Süt ve Süt ürünleri",
+                "nutrition": {
+                    "kcal": "268",
+                    "kj": "1121",
+                    "carb": "41,20",
+                    "protein": "5,10",
+                    "fat": "8,60",
+                    "satfat": "5,40",
+                    "sugar": "39,80",
+                    "salt": "0,25",
+                    "portion": "",
+                    "volume": ""
+                }
+            },
+            {
+                "name": "480 ml",
+                "price": "165",
+                "allergen": "Süt ve Süt ürünleri",
+                "nutrition": {
+                    "kcal": "352",
+                    "kj": "1472",
+                    "carb": "54,30",
+                    "protein": "6,70",
+                    "fat": "11,30",
+                    "satfat": "7,10",
+                    "sugar": "52,40",
+                    "salt": "0,33",
+                    "portion": "",
+                    "volume": ""
+                }
+            }
+        ]
+    },
+    {
+        "id": "m01420b1e6807a",
+        "name": "Çikolatalı Frappe",
+        "price": "",
+        "image": "",
+        "category_id": "c6930827426d61",
+        "desc": "Espresso, süt, kakao ve buz",
+        "allergen": "",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": [
+            {
+                "name": "360 ml",
+                "price": "145",
+                "allergen": "Süt ve Süt ürünleri",
+                "nutrition": {
+                    "kcal": "281",
+                    "kj": "1176",
+                    "carb": "43,10",
+                    "protein": "5,60",
+                    "fat": "9,20",
+                    "satfat": "5,80",
+                    "sugar": "40,50",
+                    "salt": "0,28",
+                    "portion": "",
+                    "volume": ""
+                }
+            },
+            {
+                "name": "480 ml",
+                "price": "165",
+                "allergen": "Süt ve Süt ürünleri",
+                "nutrition": {
+                    "kcal": "",
+                    "kj": "",
+                    "carb": "",
+                    "protein": "",
+                    "fat": "",
+                    "satfat": "",
+                    "sugar": "",
+                    "salt": "",
+                    "portion": "",
+                    "volume": ""
+                }
+            }
+        ]
+    },
+    {
+        "id": "m9695974095f6e",
+        "name": "Fındıklı Frappe",
+        "price": "",
+        "image": "",
+        "category_id": "c6930827426d61",
+        "desc": "Espresso, süt ve fındık aroması",
+        "allergen": "",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": [
+            {
+                "name": "360 ml",
+                "price": "150",
+                "allergen": "Fındık, Süt ve Süt ürünleri",
+                "nutrition": {
+                    "kcal": "",
+                    "kj": "",
+                    "carb": "",
+                    "protein": "",
+                    "fat": "",
+                    "satfat": "",
+                    "sugar": "",
+                    "salt": "",
+                    "portion": "",
+                    "volume": ""
+                }
+            },
+            {
+                "name": "480 ml",
+                "price": "170",
+                "allergen": "Fındık, Süt ve Süt ürünleri",
+                "nutrition": {
+                    "kcal": "",
+                    "kj": "",
+                    "carb": "",
+                    "protein": "",
+                    "fat": "",
+                    "satfat": "",
+                    "sugar": "",
+                    "salt": "",
+                    "portion": "",
+                    "volume": ""
+                }
+            }
+        ]
+    },
+    {
+        "id": "mf04399ef03b37",
+        "name": "Mocha Frappe",
+        "price": "",
+        "image": "",
+        "category_id": "c6930827426d61",
+        "desc": "Espresso, çikolata ve süt",
+        "allergen": "",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": [
+            {
+                "name": "360 ml",
+                "price": "150",
+                "allergen": "Süt ve Süt ürünleri",
+                "nutrition": {
+                    "kcal": "",
+                    "kj": "",
+                    "carb": "",
+                    "protein": "",
+                    "fat": "",
+                    "satfat": "",
+                    "sugar": "",
+                    "salt": "",
+                    "portion": "",
+                    "volume": ""
+                }
+            },
+            {
+                "name": "480 ml",
+                "price": "170",
+                "allergen": "Süt ve Süt ürünleri",
+                "nutrition": {
+                    "kcal": "",
+                    "kj": "",
+                    "carb": "",
+                    "protein": "",
+                    "fat": "",
+                    "satfat": "",
+                    "sugar": "",
+                    "salt": "",
+                    "portion": "",
+                    "volume": ""
+                }
+            }
+        ]
+    },
+    {
+        "id": "m4a2b53bde8786",
+        "name": "Beyaz Çikolatalı Frappe",
+        "price": "",
+        "image": "",
+        "category_id": "c6930827426d61",
+        "desc": "",
+        "allergen": "",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": [
+            {
+                "name": "360 ml",
+                "price": "155",
+                "allergen": "Süt ve Süt ürünleri",
+                "nutrition": {
+                    "kcal": "",
+                    "kj": "",
+                    "carb": "",
+                    "protein": "",
+                    "fat": "",
+                    "satfat": "",
+                    "sugar": "",
+                    "salt": "",
+                    "portion": "",
+                    "volume": ""
+                }
+            },
+            {
+                "name": "480 ml",
+                "price": "175",
+                "allergen": "Süt ve Süt ürünleri",
+                "nutrition": {
+                    "kcal": "",
+                    "kj": "",
+                    "carb": "",
+                    "protein": "",
+                    "fat": "",
+                    "satfat": "",
+                    "sugar": "",
+                    "salt": "",
+                    "portion": "",
+                    "volume": ""
+                }
+            }
+        ]
+    },
+    {
+        "id": "mb083b88bcf298",
+        "name": "Kakaolu Frappe",
+        "price": "140",
+        "image": "",
+        "category_id": "c6930827426d61",
+        "desc": "",
+        "allergen": "Süt ve Süt ürünleri",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": []
+    },
+    {
+        "id": "m276c72d1fd93a",
+        "name": "Limonata",
+        "price": "90",
+        "image": "",
+        "category_id": "c6930827845a58",
+        "desc": "Taze sıkılmış limon ve nane",
+        "allergen": "-",
+        "nutrition": {
+            "kcal": "118",
+            "kj": "494",
+            "carb": "29,40",
+            "protein": "0,20",
+            "fat": "0",
+            "satfat": "",
+            "sugar": "28,10",
+            "salt": "0,02",
+            "portion": "",
+            "volume": "330"
+        },
+        "variants": []
+    },
+    {
+        "id": "mbd30f2afef892",
+        "name": "Ev Yapımı Buzlu Çay",
+        "price": "85",
+        "image": "",
+        "category_id": "c6930827845a58",
+        "desc": "Şeftali veya limon",
+        "allergen": "-",
+        "nutrition": {
+            "kcal": "96",
+            "kj": "402",
+            "carb": "24,00",
+            "protein": "0",
+            "fat": "0",
+            "satfat": "",
+            "sugar": "23,50",
+            "salt": "0,01",
+            "portion": "",
+            "volume": "330"
+        },
+        "variants": []
+    },
+    {
+        "id": "m0b19b88110521",
+        "name": "Karpuz Limonata",
+        "price": "110",
+        "image": "",
+        "category_id": "c6930827845a58",
+        "desc": "Mevsiminde",
+        "allergen": "-",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": []
+    },
+    {
+        "id": "md9f93230ef4e5",
+        "name": "Portakal Suyu",
+        "price": "95",
+        "image": "",
+        "category_id": "c6930827845a58",
+        "desc": "Taze sıkma",
+        "allergen": "-",
+        "nutrition": {
+            "kcal": "112",
+            "kj": "469",
+            "carb": "25,80",
+            "protein": "1,70",
+            "fat": "0,50",
+            "satfat": "",
+            "sugar": "21,30",
+            "salt": "",
+            "portion": "",
+            "volume": "300"
+        },
+        "variants": []
+    },
+    {
+        "id": "m22de86ed94c99",
+        "name": "Nane Limonata",
+        "price": "100",
+        "image": "",
+        "category_id": "c6930827845a58",
+        "desc": "",
+        "allergen": "-",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": []
+    },
+    {
+        "id": "mc15798957f469",
+        "name": "Ice Americano",
+        "price": "",
+        "image": "",
+        "category_id": "c6930827dc6dd2",
+        "desc": "Espresso, soğuk su ve buz",
+        "allergen": "",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": [
+            {
+                "name": "240 ml",
+                "price": "90",
+                "allergen": "-",
+                "nutrition": {
+                    "kcal": "5",
+                    "kj": "21",
+                    "carb": "0,80",
+                    "protein": "0,30",
+                    "fat": "0",
+                    "satfat": "",
+                    "sugar": "0",
+                    "salt": "0,01",
+                    "portion": "",
+                    "volume": ""
+                }
+            },
+            {
+                "name": "360 ml",
+                "price": "100",
+                "allergen": "-",
+                "nutrition": {
+                    "kcal": "",
+                    "kj": "",
+                    "carb": "",
+                    "protein": "",
+                    "fat": "",
+                    "satfat": "",
+                    "sugar": "",
+                    "salt": "",
+                    "portion": "",
+                    "volume": ""
+                }
+            },
+            {
+                "name": "480 ml",
+                "price": "115",
+                "allergen": "-",
+                "nutrition": {
+                    "kcal": "",
+                    "kj": "",
+                    "carb": "",
+                    "protein": "",
+                    "fat": "",
+                    "satfat": "",
+                    "sugar": "",
+                    "salt": "",
+                    "portion": "",
+                    "volume": ""
+                }
+            }
+        ]
+    },
+    {
+        "id": "m9520a1670465e",
+        "name": "Ice Latte",
+        "price": "",
+        "image": "",
+        "category_id": "c6930827dc6dd2",
+        "desc": "Espresso, soğuk süt ve buz",
+        "allergen": "",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": [
+            {
+                "name": "360 ml",
+                "price": "120",
+                "allergen": "Süt ve Süt ürünleri",
+                "nutrition": {
+                    "kcal": "118",
+                    "kj": "494",
+                    "carb": "10,40",
+                    "protein": "6,20",
+                    "fat": "5,10",
+                    "satfat": "3,20",
+                    "sugar": "10,40",
+                    "salt": "0,18",
+                    "portion": "",
+                    "volume": ""
+                }
+            },
+            {
+                "name": "480 ml",
+                "price": "135",
+                "allergen": "Süt ve Süt ürünleri",
+                "nutrition": {
+                    "kcal": "",
+                    "kj": "",
+                    "carb": "",
+                    "protein": "",
+                    "fat": "",
+                    "satfat": "",
+                    "sugar": "",
+                    "salt": "",
+                    "portion": "",
+                    "volume": ""
+                }
+            }
+        ]
+    },
+    {
+        "id": "mb68ea4ecb0695",
+        "name": "Ice Mocha",
+        "price": "",
+        "image": "",
+        "category_id": "c6930827dc6dd2",
+        "desc": "",
+        "allergen": "",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": [
+            {
+                "name": "360 ml",
+                "price": "140",
+                "allergen": "Süt ve Süt ürünleri",
+                "nutrition": {
+                    "kcal": "",
+                    "kj": "",
+                    "carb": "",
+                    "protein": "",
+                    "fat": "",
+                    "satfat": "",
+                    "sugar": "",
+                    "salt": "",
+                    "portion": "",
+                    "volume": ""
+                }
+            },
+            {
+                "name": "480 ml",
+                "price": "155",
+                "allergen": "Süt ve Süt ürünleri",
+                "nutrition": {
+                    "kcal": "",
+                    "kj": "",
+                    "carb": "",
+                    "protein": "",
+                    "fat": "",
+                    "satfat": "",
+                    "sugar": "",
+                    "salt": "",
+                    "portion": "",
+                    "volume": ""
+                }
+            }
+        ]
+    },
+    {
+        "id": "m78e953221ce8a",
+        "name": "Cold Brew",
+        "price": "125",
+        "image": "",
+        "category_id": "c6930827dc6dd2",
+        "desc": "12 saat soğuk demleme",
+        "allergen": "-",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": []
+    },
+    {
+        "id": "m3a04f7b0351aa",
+        "name": "Ice Caramel Macchiato",
+        "price": "",
+        "image": "",
+        "category_id": "c6930827dc6dd2",
+        "desc": "",
+        "allergen": "",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": [
+            {
+                "name": "360 ml",
+                "price": "145",
+                "allergen": "Süt ve Süt ürünleri",
+                "nutrition": {
+                    "kcal": "",
+                    "kj": "",
+                    "carb": "",
+                    "protein": "",
+                    "fat": "",
+                    "satfat": "",
+                    "sugar": "",
+                    "salt": "",
+                    "portion": "",
+                    "volume": ""
+                }
+            },
+            {
+                "name": "480 ml",
+                "price": "160",
+                "allergen": "Süt ve Süt ürünleri",
+                "nutrition": {
+                    "kcal": "",
+                    "kj": "",
+                    "carb": "",
+                    "protein": "",
+                    "fat": "",
+                    "satfat": "",
+                    "sugar": "",
+                    "salt": "",
+                    "portion": "",
+                    "volume": ""
+                }
+            }
+        ]
+    },
+    {
+        "id": "m4f93214495a6d",
+        "name": "Serpme Kahvaltı",
+        "price": "420",
+        "image": "",
+        "category_id": "c69308288ab489",
+        "desc": "İki kişilik, sınırsız çay ile",
+        "allergen": "Gluten (buğday), Süt ve Süt ürünleri, Yumurta",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": []
+    },
+    {
+        "id": "m789076111493f",
+        "name": "Kaşarlı Tost",
+        "price": "140",
+        "image": "",
+        "category_id": "c69308288ab489",
+        "desc": "",
+        "allergen": "Gluten (buğday), Süt ve Süt ürünleri",
+        "nutrition": {
+            "kcal": "412",
+            "kj": "1724",
+            "carb": "38,20",
+            "protein": "18,40",
+            "fat": "20,10",
+            "satfat": "10,30",
+            "sugar": "3,10",
+            "salt": "1,60",
+            "portion": "180",
+            "volume": ""
+        },
+        "variants": []
+    },
+    {
+        "id": "m3ff76ec90089d",
+        "name": "Karışık Tost",
+        "price": "165",
+        "image": "",
+        "category_id": "c69308288ab489",
+        "desc": "Kaşar, sucuk ve domates",
+        "allergen": "Gluten (buğday), Süt ve Süt ürünleri",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": []
+    },
+    {
+        "id": "m610f7a95f7e3f",
+        "name": "Avokadolu Ekşi Maya Tost",
+        "price": "225",
+        "image": "",
+        "category_id": "c69308288ab489",
+        "desc": "Avokado, limon ve pul biber",
+        "allergen": "Gluten (buğday)",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": []
+    },
+    {
+        "id": "m9e8efa45b62fd",
+        "name": "Kulüp Sandviç",
+        "price": "285",
+        "image": "",
+        "category_id": "c69308288ab489",
+        "desc": "Tavuk, marul, domates ve patates kızartması",
+        "allergen": "Gluten (buğday), Yumurta",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": []
+    },
+    {
+        "id": "m84dff88e7853c",
+        "name": "Menemen",
+        "price": "195",
+        "image": "",
+        "category_id": "c69308288ab489",
+        "desc": "Domates, biber ve yumurta",
+        "allergen": "Yumurta",
+        "nutrition": {
+            "kcal": "268",
+            "kj": "1121",
+            "carb": "9,40",
+            "protein": "13,20",
+            "fat": "19,80",
+            "satfat": "5,10",
+            "sugar": "6,80",
+            "salt": "1,10",
+            "portion": "320",
+            "volume": ""
+        },
+        "variants": []
+    },
+    {
+        "id": "md1d04effc1d52",
+        "name": "Havuçlu Ceviz Kek",
+        "price": "165",
+        "image": "",
+        "category_id": "c6930828f3712f",
+        "desc": "",
+        "allergen": "Gluten (buğday), Ceviz, Yumurta, Süt ve Süt ürünleri",
+        "nutrition": {
+            "kcal": "386",
+            "kj": "1615",
+            "carb": "44,60",
+            "protein": "5,20",
+            "fat": "20,30",
+            "satfat": "4,80",
+            "sugar": "28,40",
+            "salt": "0,55",
+            "portion": "110",
+            "volume": ""
+        },
+        "variants": []
+    },
+    {
+        "id": "mf0057b49c9ea6",
+        "name": "Limonlu Kek",
+        "price": "155",
+        "image": "",
+        "category_id": "c6930828f3712f",
+        "desc": "",
+        "allergen": "Gluten (buğday), Yumurta, Süt ve Süt ürünleri",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": []
+    },
+    {
+        "id": "m0a76d76a00959",
+        "name": "San Sebastian Cheesecake",
+        "price": "210",
+        "image": "",
+        "category_id": "c6930828f3712f",
+        "desc": "",
+        "allergen": "Süt ve Süt ürünleri, Yumurta",
+        "nutrition": {
+            "kcal": "452",
+            "kj": "1891",
+            "carb": "32,10",
+            "protein": "8,40",
+            "fat": "31,60",
+            "satfat": "18,90",
+            "sugar": "29,70",
+            "salt": "0,48",
+            "portion": "130",
+            "volume": ""
+        },
+        "variants": []
+    },
+    {
+        "id": "m6443cf3d5efb4",
+        "name": "Çikolatalı Brownie",
+        "price": "175",
+        "image": "",
+        "category_id": "c6930828f3712f",
+        "desc": "",
+        "allergen": "Gluten (buğday), Yumurta, Süt ve Süt ürünleri",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": []
+    },
+    {
+        "id": "m24a028fb881c9",
+        "name": "Tiramisu",
+        "price": "195",
+        "image": "",
+        "category_id": "c6930828f3712f",
+        "desc": "",
+        "allergen": "Gluten (buğday), Yumurta, Süt ve Süt ürünleri",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": []
+    },
+    {
+        "id": "m0d1a4abc1dc23",
+        "name": "Frambuazlı Cheesecake",
+        "price": "195",
+        "image": "",
+        "category_id": "c693082a05d328",
+        "desc": "",
+        "allergen": "Süt ve Süt ürünleri, Yumurta, Gluten (buğday)",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": []
+    },
+    {
+        "id": "m9d72b82178aed",
+        "name": "Limonlu Cheesecake",
+        "price": "185",
+        "image": "",
+        "category_id": "c693082a05d328",
+        "desc": "",
+        "allergen": "Süt ve Süt ürünleri, Yumurta, Gluten (buğday)",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": []
+    },
+    {
+        "id": "m97c8fbf9541b8",
+        "name": "Çikolata Parçacıklı Cookie",
+        "price": "95",
+        "image": "",
+        "category_id": "c693082a05d328",
+        "desc": "",
+        "allergen": "Gluten (buğday), Süt ve Süt ürünleri",
+        "nutrition": {
+            "kcal": "243",
+            "kj": "1017",
+            "carb": "31,80",
+            "protein": "3,10",
+            "fat": "11,60",
+            "satfat": "6,70",
+            "sugar": "19,40",
+            "salt": "0,32",
+            "portion": "60",
+            "volume": ""
+        },
+        "variants": []
+    },
+    {
+        "id": "m19f3b11844e60",
+        "name": "Fıstık Ezmeli Cookie",
+        "price": "105",
+        "image": "",
+        "category_id": "c693082a05d328",
+        "desc": "",
+        "allergen": "Yer fıstığı, Gluten (buğday), Süt ve Süt ürünleri",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": []
+    },
+    {
+        "id": "m589d56694bef0",
+        "name": "Çikolatalı Muffin",
+        "price": "110",
+        "image": "",
+        "category_id": "c693082a05d328",
+        "desc": "",
+        "allergen": "Gluten (buğday), Yumurta, Süt ve Süt ürünleri",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": []
+    },
+    {
+        "id": "m9561edfbb963b",
+        "name": "Granola Bar",
+        "price": "75",
+        "image": "",
+        "category_id": "c6a711f922a316",
+        "desc": "",
+        "allergen": "Yulaf, Fındık",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": []
+    },
+    {
+        "id": "mb851c1f8093c6",
+        "name": "Kuru Meyve Karışımı",
+        "price": "85",
+        "image": "",
+        "category_id": "c6a711f922a316",
+        "desc": "",
+        "allergen": "-",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": []
+    },
+    {
+        "id": "m041eaa388a48a",
+        "name": "Bitter Çikolata",
+        "price": "65",
+        "image": "",
+        "category_id": "c6a711f922a316",
+        "desc": "",
+        "allergen": "Süt ve Süt ürünleri",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": ""
+        },
+        "variants": []
+    },
+    {
+        "id": "mffec4866b77e3",
+        "name": "Su",
+        "price": "25",
+        "image": "",
+        "category_id": "c6a711f9f8c3e4",
+        "desc": "",
+        "allergen": "-",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": "500"
+        },
+        "variants": []
+    },
+    {
+        "id": "mc72ff11d3aab2",
+        "name": "Soda",
+        "price": "45",
+        "image": "",
+        "category_id": "c6a711f9f8c3e4",
+        "desc": "",
+        "allergen": "-",
+        "nutrition": {
+            "kcal": "",
+            "kj": "",
+            "carb": "",
+            "protein": "",
+            "fat": "",
+            "satfat": "",
+            "sugar": "",
+            "salt": "",
+            "portion": "",
+            "volume": "250"
+        },
+        "variants": []
+    },
+    {
+        "id": "m0480bff4f78dc",
+        "name": "Ayran",
+        "price": "55",
+        "image": "",
+        "category_id": "c6a711f9f8c3e4",
+        "desc": "",
+        "allergen": "Süt ve Süt ürünleri",
+        "nutrition": {
+            "kcal": "37",
+            "kj": "155",
+            "carb": "2,90",
+            "protein": "1,70",
+            "fat": "1,90",
+            "satfat": "1,20",
+            "sugar": "2,90",
+            "salt": "0,45",
+            "portion": "",
+            "volume": "300"
+        },
+        "variants": []
     }
 ]
