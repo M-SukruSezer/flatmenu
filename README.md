@@ -44,7 +44,8 @@ Siz de menüyü tarayıcı üzerinden, admin panelinden yönetirsiniz.
 
 ### 🖥️ Ekran görüntüleri
 
-Solda QR kod okutulduğunda açılan ana sayfa, sağda bir kategorinin ürün listesi:
+Solda QR kod okutulduğunda açılan ana sayfa, sağda bir kategorinin ürün listesi. Örnek veri
+görsel içermez; kendi fotoğraflarınızı panelden yükleyebilirsiniz:
 
 <img src="docs/screenshots/menu-home.jpg" width="300" alt="Müşteri menüsü ana sayfası">
 <img src="docs/screenshots/menu-category.jpg" width="300" alt="Kategori ve ürün listesi">
@@ -58,6 +59,9 @@ boşluğu, iri serif başlıklar ve sakin fotoğraflar.
   Uygulamadan sipariş verilmediği için rozet "satın alınabilir" izlenimi yaratırdı.
 - **Kategori adı fotoğrafın altında**, üstüne perde çekilmez; fotoğraf temiz kalır.
 - **Alerjen bilgisi asla gizlenmez.** Besin değerleri ikincil bilgidir, açılır satırda durur.
+- **Fotoğraf zorunlu değil.** Hiçbir kategoride kapak görseli yoksa ana sayfa, basılı menünün
+  içindekiler sayfası gibi tipografik bir listeye döner. Panelden tek bir görsel yüklediğinizde
+  kart ızgarasına geçer; görseli olmayan kategoriler sakin bir kağıt tonuyla durur.
 - **Beyaz etiket**: palet ve yazı tipleri hiçbir mutfağa veya markaya bağlı değildir.
   İşletme kendi logosunu, başlığını ve header/footer renklerini panelden değiştirir.
 
@@ -228,7 +232,8 @@ You manage everything from a browser-based admin panel.
 
 ### 🖥️ Screenshots
 
-On the left, the page that opens when the QR code is scanned; on the right, a category's item list:
+On the left, the page that opens when the QR code is scanned; on the right, a category's item list.
+The sample data ships without photos; upload your own from the admin panel:
 
 <img src="docs/screenshots/menu-home.jpg" width="300" alt="Customer-facing menu home">
 <img src="docs/screenshots/menu-category.jpg" width="300" alt="Category and item list">
@@ -242,6 +247,9 @@ generous margins, large serif headings and calm photography.
   Nothing is orderable in the app, so a badge would imply "buy now".
 - **Category names sit below the photo**, never over it, so the photo stays clean.
 - **Allergen info is never collapsed.** Nutrition facts are secondary and live behind a disclosure.
+- **Photos are optional.** With no cover image on any category, the home page falls back to a
+  typographic contents list, like the first page of a printed menu. Upload a single image from the
+  admin panel and it switches to the card grid; categories without one sit in a calm paper tone.
 - **White label**: the palette and type are tied to no cuisine and no brand. Owners change the logo,
   title and header/footer colours from the admin panel.
 

@@ -76,6 +76,12 @@ foreach ($categories as $cat) {
     $visibleCats[] = $cat;
 }
 
+// Hiçbir kategoride kapak görseli yoksa ızgara yerine tipografik liste
+// kullanılır: boş gri bloklar yerine basılı menünün içindekiler sayfası.
+// İşletme panelden tek bir görsel yüklediğinde ızgaraya geri dönülür.
+$anyCatPhoto = false;
+foreach ($visibleCats as $c) { if (!empty($c['image'])) { $anyCatPhoto = true; break; } }
+
 ?><!doctype html>
 <html lang="<?php echo h($lang); ?>">
 <head>
@@ -108,6 +114,17 @@ foreach ($categories as $cat) {
 
         <?php if (!$visibleCats): ?>
         <p class="empty-note">Menü henüz hazırlanıyor. Yönetim panelinden kategori ekleyebilirsiniz.</p>
+        <?php elseif (!$anyCatPhoto): ?>
+        <section class="cat-list">
+            <?php foreach ($visibleCats as $cat): ?>
+                <?php $catId = (string)($cat['id'] ?? ''); $count = $itemCounts[$catId] ?? 0; ?>
+                <a class="cat-row" href="category.php?id=<?php echo h($catId); ?>">
+                    <span class="cat-row-name"><?php echo h((string)($cat['name'] ?? '')); ?></span>
+                    <span class="cat-row-dots"></span>
+                    <span class="cat-row-count"><?php echo $count; ?> ürün</span>
+                </a>
+            <?php endforeach; ?>
+        </section>
         <?php else: ?>
         <section class="cat-grid">
             <?php foreach ($visibleCats as $cat): ?>
@@ -118,7 +135,7 @@ foreach ($categories as $cat) {
                 $count = $itemCounts[$catId] ?? 0;
                 ?>
                 <a class="cat-tile <?php echo $layout; ?>" href="category.php?id=<?php echo h($catId); ?>">
-                    <div class="cat-photo" style="<?php echo !empty($cat['image'])? 'background-image:url('.h((string)$cat['image']).')':''; ?>"></div>
+                    <div class="cat-photo<?php echo empty($cat['image']) ? ' is-empty' : ''; ?>" style="<?php echo !empty($cat['image'])? 'background-image:url('.h((string)$cat['image']).')':''; ?>"></div>
                     <div class="cat-name"><?php echo h((string)($cat['name'] ?? '')); ?></div>
                     <div class="cat-count"><?php echo $count; ?> ürün</div>
                 </a>

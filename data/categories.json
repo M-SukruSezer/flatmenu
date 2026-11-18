@@ -2,49 +2,49 @@
     {
         "id": "c6930826586589",
         "name": "Espresso",
-        "image": "uploads/u_6935ddc66afb91.62648779.gif",
+        "image": "",
         "visible": true,
         "layout": "full"
     },
     {
         "id": "c6930827426d61",
         "name": "Frappe",
-        "image": "uploads/u_6935dd3a926202.61861656.gif",
+        "image": "",
         "visible": true,
         "layout": "vertical"
     },
     {
         "id": "c6930827845a58",
         "name": "Soğuk İçecekler",
-        "image": "uploads/u_6935dde0809486.32163683.png",
+        "image": "",
         "visible": true,
         "layout": "vertical"
     },
     {
         "id": "c6930827dc6dd2",
         "name": "Buzlu Kahve",
-        "image": "uploads/u_6935deb21e02d4.24380766.jpg",
+        "image": "",
         "visible": true,
         "layout": "two"
     },
     {
         "id": "c69308288ab489",
         "name": "Kahvaltılık ve Sandviçler",
-        "image": "uploads/u_6935e0162f54b0.97377607.jpg",
+        "image": "",
         "visible": true,
         "layout": "two"
     },
     {
         "id": "c6930828f3712f",
         "name": "Pasta ve Kekler",
-        "image": "uploads/u_6935e055457139.88458859.jpg",
+        "image": "",
         "visible": true,
         "layout": "full"
     },
     {
         "id": "c693082a05d328",
         "name": "Cheesecake, Cookie ve Muffin",
-        "image": "uploads/u_6935e0893081b5.17958516.jpg",
+        "image": "",
         "visible": true,
         "layout": "full"
     },
