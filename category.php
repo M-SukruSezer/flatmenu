@@ -36,6 +36,7 @@ $title = ($category['name'] ?? '') . ' - ' . ($config['site_title'] ?? 'Menü');
 $logo = $config['logo'] ?? '';
 $headerBg = (string)($config['header_bg'] ?? '');
 $footerBg = (string)($config['footer_bg'] ?? '');
+$footerText = trim((string)($config['footer_text'] ?? ''));
 $bg = $category['image'] ?? '';
 
 ?><!doctype html>
@@ -184,7 +185,9 @@ $bg = $category['image'] ?? '';
             </a>
             <?php endif; ?>
         </div>
-        <div class="footer-copyright">Telif hakkı ©2026 Colombia Plus Kurumsal.</div>
+        <?php if ($footerText !== ''): ?>
+        <div class="footer-copyright"><?php echo h($footerText); ?></div>
+        <?php endif; ?>
     </footer>
 
     <script src="assets/js/app.js"></script>

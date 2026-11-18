@@ -80,6 +80,7 @@ $config = load_json($configFile, [
     'site_title' => 'Menü',
     'logo' => '',
     'favicon' => '',
+    'footer_text' => '',
     'social' => ['facebook' => '', 'instagram' => '', 'twitter' => '']
 ]);
 $categories = load_json($catsFile, []);
@@ -159,6 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
     if ($action === 'save_settings') {
         $config['site_title'] = trim((string)($_POST['site_title'] ?? $config['site_title']));
+        $config['footer_text'] = trim((string)($_POST['footer_text'] ?? ($config['footer_text'] ?? '')));
         $logoPath = upload_file('logo', $uploadsDir);
         if ($logoPath) $config['logo'] = $logoPath;
         $favPath = upload_file('favicon', $uploadsDir);
@@ -505,6 +507,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div>
                         <label>Site Başlığı</label>
                         <input type="text" name="site_title" value="<?php echo h((string)$config['site_title']); ?>">
+                    </div>
+                    <div>
+                        <label>Alt Bilgi Yazısı</label>
+                        <input type="text" name="footer_text" value="<?php echo h((string)($config['footer_text'] ?? '')); ?>" placeholder="Örn: © 2026 İşletme Adı">
                     </div>
                     <div>
                         <label>Logo</label>
