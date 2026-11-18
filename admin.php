@@ -415,6 +415,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .menu-toggle { display:none; }
 
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+        /* Dashboard sayaçları: kutu yerine tipografi */
+        .stat-row { display: flex; gap: 56px; flex-wrap: wrap; }
+        .stat-num { font-family: var(--serif); font-size: 46px; line-height: 1; color: var(--ink); }
+        .stat-label { margin-top: 7px; font-size: 11px; letter-spacing: .16em;
+                      text-transform: uppercase; color: var(--ink-2); }
         .admin-list { display: grid; gap: 8px; }
         .row { display:flex; align-items:center; gap:8px; }
 
@@ -437,7 +443,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                font: inherit; font-weight: 700; font-size: 12.5px; letter-spacing: .06em;
                text-transform: uppercase; cursor: pointer; }
         .btn:hover { background:#8d3c25; }
-        .btn[formaction*="delete"], .btn.danger { background: var(--ink); }
+        /* Yıkıcı eylem birincil eylemle aynı görünmez */
+        .btn.danger { background: transparent; color: var(--ink-2);
+                      box-shadow: inset 0 0 0 1px var(--rule); }
+        .btn.danger:hover { background: #fdecec; color: #c0392b;
+                            box-shadow: inset 0 0 0 1px #c0392b; }
 
         .thumb { width: 58px; height: 58px; border-radius: 2px; object-fit: cover; background: var(--paper-3); display: inline-block; }
         .highlight-row td { background: var(--accent-soft) !important; }
@@ -514,14 +524,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php if ($tab==='dashboard'): ?>
         <div class="admin-card">
             <h2>Dashboard</h2>
-            <div class="grid-2">
-                <div class="admin-card" style="margin:0;">
-                    <h3>Kategori Sayısı</h3>
-                    <div><?php echo (int)$catCount; ?></div>
+            <div class="stat-row">
+                <div class="stat">
+                    <div class="stat-num"><?php echo (int)$catCount; ?></div>
+                    <div class="stat-label">Kategori</div>
                 </div>
-                <div class="admin-card" style="margin:0;">
-                    <h3>Menü Öğesi</h3>
-                    <div><?php echo (int)$itemCount; ?></div>
+                <div class="stat">
+                    <div class="stat-num"><?php echo (int)$itemCount; ?></div>
+                    <div class="stat-label">Menü öğesi</div>
                 </div>
             </div>
         </div>
@@ -578,11 +588,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <div>
                         <label>Header Arkaplan</label>
-                        <input type="color" name="header_bg" value="<?php echo h((string)($config['header_bg'] ?? '#ffffff')); ?>">
+                        <input type="color" name="header_bg" value="<?php echo h(((string)($config['header_bg'] ?? '')) ?: '#faf8f4'); ?>">
                     </div>
                     <div>
                         <label>Footer Arkaplan</label>
-                        <input type="color" name="footer_bg" value="<?php echo h((string)($config['footer_bg'] ?? '#ffffff')); ?>">
+                        <input type="color" name="footer_bg" value="<?php echo h(((string)($config['footer_bg'] ?? '')) ?: '#faf8f4'); ?>">
                     </div>
                 </div>
                 <div style="margin-top:12px;"><button class="btn" type="submit">Kaydet</button></div>
@@ -649,14 +659,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     </select>
                                     <label style="display:flex;align-items:center;gap:6px;"><input type="checkbox" name="visible" value="1" <?php echo !empty($cat['visible'])? 'checked':''; ?>> Görünür</label>
                                     <input type="file" name="edit_cat_image" accept="image/*">
-                                    <button class="btn" type="submit">Güncelle</button>
+                                    <button class="btn" type="submit" style="grid-column:1/-1;">Güncelle</button>
                                 </form>
-                                <form method="post" style="display:inline;margin-top:6px;">
+                                <form method="post" style="margin-top:8px;">
                                      <input type="hidden" name="action" value="delete_category">
                                      <input type="hidden" name="id" value="<?php echo h((string)$cat['id']); ?>">
                                      <input type="hidden" name="ret" value="kategoriler">
                                      <input type="hidden" name="anchor" value="kategoriler">
-                                     <button class="btn" type="submit" onclick="return confirm('Kategori ve bağlı menüler silinecek. Onaylıyor musunuz?');">Sil</button>
+                                     <button class="btn danger" type="submit" onclick="return confirm('Kategori ve bağlı menüler silinecek. Onaylıyor musunuz?');">Sil</button>
                                  </form>
                              </td>
                          </tr>
@@ -769,12 +779,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <input type="file" name="edit_item_image" accept="image/*">
                                     <button class="btn" type="submit">Güncelle</button>
                                 </form>
-                                <form method="post" style="display:inline;margin-top:6px;">
+                                <form method="post" style="margin-top:8px;">
                                     <input type="hidden" name="action" value="delete_item">
                                     <input type="hidden" name="id" value="<?php echo h((string)$it['id']); ?>">
                                     <input type="hidden" name="ret" value="menuler">
                                     <input type="hidden" name="anchor" value="menuler">
-                                    <button class="btn" type="submit" onclick="return confirm('Menü öğesi silinecek, onaylıyor musunuz?');">Sil</button>
+                                    <button class="btn danger" type="submit" onclick="return confirm('Menü öğesi silinecek, onaylıyor musunuz?');">Sil</button>
                                 </form>
                         </div>
                     </details>

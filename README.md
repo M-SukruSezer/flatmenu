@@ -44,11 +44,32 @@ Siz de menüyü tarayıcı üzerinden, admin panelinden yönetirsiniz.
 
 ### 🖥️ Ekran görüntüleri
 
+#### Müşteri menüsü
+
 Solda QR kod okutulduğunda açılan ana sayfa, sağda bir kategorinin ürün listesi. Örnek veride 9 kategori ve
 48 ürün var, görsel yoktur; kendi fotoğraflarınızı panelden yükleyebilirsiniz:
 
 <img src="docs/screenshots/menu-home.jpg" width="300" alt="Müşteri menüsü ana sayfası">
 <img src="docs/screenshots/menu-category.jpg" width="300" alt="Kategori ve ürün listesi">
+
+#### Yönetim paneli
+
+Menü ile aynı dili konuşur: kağıt zemin, serif başlıklar, terracotta eylem rengi.
+
+**Menü Öğeleri** — ürün ekleme; her ürünün kendi besin değerleri, alerjen bilgisi ve
+boy/çeşit satırları. Her boyun ayrı fiyatı ve ayrı besin değeri olabilir:
+
+![Yönetim paneli menü öğeleri ekranı](docs/screenshots/admin-items.jpg)
+
+**Kategoriler** — kategori ekleme, kapak görseli yükleme, düzen seçimi
+(Tam / Dikey / Yan Yana) ve menüden silmeden gizleme:
+
+![Yönetim paneli kategoriler ekranı](docs/screenshots/admin-categories.jpg)
+
+**Ayarlar** — işletme adı, logo, favicon, alt bilgi yazısı, header/footer renkleri,
+sosyal medya bağlantıları, önbellek temizleme ve şifre değiştirme:
+
+![Yönetim paneli ayarlar ekranı](docs/screenshots/admin-settings.jpg)
 
 ### 🎨 Tasarım
 
@@ -233,11 +254,32 @@ You manage everything from a browser-based admin panel.
 ### 🖥️ Screenshots
 
 On the left, the page that opens when the QR code is scanned; on the right, a category's item list.
+#### Customer menu
+
 The sample data has 9 categories and 48 items and ships without photos; upload your own from the
 admin panel:
 
 <img src="docs/screenshots/menu-home.jpg" width="300" alt="Customer-facing menu home">
 <img src="docs/screenshots/menu-category.jpg" width="300" alt="Category and item list">
+
+#### Admin panel
+
+It speaks the same language as the menu: paper surface, serif headings, terracotta actions.
+
+**Menu items** — add products, each with its own nutrition facts, allergen note and size
+variants. Every size can carry its own price and its own nutrition values:
+
+![Admin panel menu items screen](docs/screenshots/admin-items.jpg)
+
+**Categories** — add categories, upload a cover image, pick a layout
+(Full / Vertical / Two-column) and hide one without deleting it:
+
+![Admin panel categories screen](docs/screenshots/admin-categories.jpg)
+
+**Settings** — business name, logo, favicon, footer text, header/footer colours, social
+links, cache clearing and password change:
+
+![Admin panel settings screen](docs/screenshots/admin-settings.jpg)
 
 ### 🎨 Design
 
